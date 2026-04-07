@@ -1,30 +1,31 @@
-// Attendre que la page soit chargée
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // Sélectionner tous les éléments qui doivent réagir à la lumière
-    const spotlightTargets = document.querySelectorAll('.spotlight-target');
-    const pervasiveTexture = document.querySelector('.spotlight-reveal');
 
-    // Écouter le mouvement de la souris sur toute la fenêtre
+    const metalBg     = document.querySelector('.hex-metal-bg');
+    const glowOverlay = document.querySelector('.hex-glow-overlay');
+    const heroCard    = document.getElementById('hero-card');
+
     window.addEventListener('mousemove', (e) => {
-        
-        // 1. Gérer l'effet de texture pervasive (page complète)
-        if (pervasiveTexture) {
-            // Pour le masquage global, on utilise les coordonnées brutes (e.clientX/e.clientY)
-            pervasiveTexture.style.setProperty('--mouse-x', `${e.clientX}px`);
-            pervasiveTexture.style.setProperty('--mouse-y', `${e.clientY}px`);
+        const x = `${e.clientX}px`;
+        const y = `${e.clientY}px`;
+
+        // Mise à jour du masque de révélation hexagonale (position curseur en fixed)
+        if (metalBg) {
+            metalBg.style.setProperty('--mouse-x', x);
+            metalBg.style.setProperty('--mouse-y', y);
+        }
+        if (glowOverlay) {
+            glowOverlay.style.setProperty('--mouse-x', x);
+            glowOverlay.style.setProperty('--mouse-y', y);
         }
 
-        // 2. Gérer les reflets individuels sur les blocs
-        spotlightTargets.forEach(target => {
-            const rect = target.getBoundingClientRect();
-            // Calculer la position X et Y de la souris à l'intérieur de cet élément
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Injecter ces coordonnées relatives dans le CSS
-            target.style.setProperty('--mouse-x', `${x}px`);
-            target.style.setProperty('--mouse-y', `${y}px`);
-        });
+        // Halo interne sur la hero-card (coordonnées relatives à la carte)
+        if (heroCard) {
+            const rect = heroCard.getBoundingClientRect();
+            const cx = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+            const cy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+            heroCard.style.setProperty('--card-mx', cx);
+            heroCard.style.setProperty('--card-my', cy);
+        }
     });
+
 });

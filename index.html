@@ -3,63 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafael Veneque-Fougeray | Portfolio Premium</title>
-    <meta name="description" content="Portfolio raffiné de Rafael Veneque-Fougeray, développeur spécialisé en JavaScript et PHP.">
-    <meta name="keywords" content="Rafael, Veneque, Fougeray, portfolio, développeur web, PHP, JavaScript, premium">
+    <title>Rafael Veneque-Fougeray | Portfolio</title>
+    <meta name="description" content="Portfolio de Rafael Veneque-Fougeray, étudiant en BUT Informatique.">
+    <meta name="keywords" content="Rafael, Veneque, Fougeray, portfolio, développeur web, PHP, JavaScript">
     <meta name="google-site-verification" content="rytEnzDm7cBVQ6kfwzwWOrWmcD2FyBrAxmkoF2XIxKk" />
-    
     <link rel="stylesheet" href="css/style.css">
-    
     <script src="js/script.js" defer></script>
 </head>
-<body class="black-label">
+<body>
 
-    <div id="page-texture-wrapper" class="spotlight-reveal">
-        
-        <header class="navbar spotlight-target">
+    <!-- Fond hexagonal : 2 calques + glow -->
+    <div class="hex-base-bg"  aria-hidden="true"></div>
+    <div class="hex-metal-bg" aria-hidden="true"></div>
+    <div class="hex-glow-overlay" aria-hidden="true"></div>
+
+    <div id="page-wrapper">
+
+        <header class="navbar">
             <div class="logo">
                 <a href="#">Rafael<span>.</span></a>
             </div>
-            <nav>
+            <nav aria-label="Navigation principale">
                 <ul class="nav-links">
-                    <li><a href="#accueil" class="hover-glow">Accueil</a></li>
-                    <li><a href="#formation" class="hover-glow">Formation</a></li>
-                    <li><a href="#projets" class="hover-glow">Projets</a></li>
-                    <li><a href="#contact" class="hover-glow">Contact</a></li>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#formation">Formation</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </header>
 
         <main id="accueil">
-            <div class="hero-split spotlight-target">
-                
+            <div class="hero-card" id="hero-card">
                 <div class="hero-left">
                     <img src="assets/photo-profil.jpg" alt="Photo de Rafael Veneque-Fougeray" class="profile-photo">
                 </div>
-                
                 <div class="hero-right">
-                    <h1 class="refined-title">Rafael <br>Veneque-Fougeray</h1>
-                    <p class="title">Étudiant en BUT Informatique</p>
-                    
-                    <div class="short-bio">
-                        <h2>Et si vous me preniez dans votre équipe ?</h2>
-                        <p>...MON TEXTE A METTRE MAIS LA TROP LA FLEMME CE SOIR...</p>
+                    <h1 class="hero-name">Rafael<br>Veneque-Fougeray</h1>
+                    <p class="hero-role">Étudiant en BUT Informatique</p>
+                    <div class="hero-divider"></div>
+                    <div>
+                        <p class="hero-bio-label">Et si vous me preniez dans votre équipe ?</p>
+                        <p class="hero-bio-text">…MON TEXTE A METTRE MAIS LA TROP LA FLEMME CE SOIR…</p>
                     </div>
-                    
-                    <div class="glow-line"></div>
                 </div>
-                
             </div>
         </main>
 
-        <footer class="footer spotlight-target">
-            <div class="footer-content">
+        <footer class="footer">
+            <div class="footer-inner">
                 <div class="social-links">
-                    <a href="https://github.com/RafaelVeF" target="_blank" class="hover-glow">GitHub</a>
-                    <a href="https://www.linkedin.com/in/rafael-veneque-fougeray-59498733b/" target="_blank" class="hover-glow">LinkedIn</a>
-                    <a href="mailto:rafaelvenequefougeray@gmail.com" class="hover-glow">Email</a>
+                    <a href="https://github.com/RafaelVeF" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/rafael-veneque-fougeray-59498733b/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:rafaelvenequefougeray@gmail.com">Email</a>
                 </div>
-                <p>&copy; 2026 Rafael Veneque-Fougeray. Pensé élégant, construit avec style.</p>
+                <p class="footer-copy">&copy; 2026 Rafael Veneque-Fougeray</p>
             </div>
         </footer>
 
