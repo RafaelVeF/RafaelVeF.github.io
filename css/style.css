@@ -1,6 +1,7 @@
 /* --- VARIABLES --- */
 :root {
-    --bg-dark: #000000;
+    --bg-dark: #0a0a0a;
+    --bg-card: rgba(20, 20, 20, 0.6); /* Fond des composants légèrement plus clair */
     --text-main: #ffffff;
     --text-muted: #888888;
     --accent: #ffffff;
@@ -42,7 +43,7 @@ body {
     background: radial-gradient(
         600px circle at var(--mouse-x) var(--mouse-y), 
         transparent,     
-        #000000 70%      
+        var(--bg-dark) 85%      
     );
     pointer-events: none;
 }
@@ -80,7 +81,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 5%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
@@ -143,7 +144,7 @@ main {
     padding: 3rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
 }
 
@@ -241,9 +242,10 @@ main {
 }
 
 .footer p {
-    color: #333; /* Très discret */
-    font-size: 0.75rem;
+    color: #2a2a2a; /* Très discret */
+    font-size: 0.7rem;
     margin: 0;
+    letter-spacing: 1px;
 }
 
 /* --- RESPONSIVE MOBILE --- */
