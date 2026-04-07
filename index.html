@@ -11,25 +11,158 @@
 
     <meta name="google-site-verification" content="rytEnzDm7cBVQ6kfwzwWOrWmcD2FyBrAxmkoF2XIxKk" />
     <style>
+        /* --- VARIABLES DE THEME --- */
+        :root {
+            --primary-color: #3b82f6; /* Bleu tech dynamique */
+            --bg-color: #0f172a; /* Bleu très sombre (presque noir) */
+            --text-color: #f8fafc; /* Blanc cassé pour ne pas agresser les yeux */
+            --text-muted: #94a3b8; /* Gris clair pour les éléments secondaires */
+            --nav-bg: rgba(15, 23, 42, 0.85); /* Fond transparent pour le header */
+        }
+
+        /* --- RESET DE BASE --- */
+        html {
+            scroll-behavior: smooth; /* Essentiel pour une One-Page : défilement fluide */
+        }
         body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Permet au footer de rester en bas */
         }
-        h1 {
-            color: #333;
-            border-right: 4px solid #007bff;
-            padding-right: 15px;
-            animation: blink 0.7s infinite alternate;
+
+        /* --- HEADER & NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px); /* Effet verre dépoli */
+            -webkit-backdrop-filter: blur(12px);
+            box-sizing: border-box;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        @keyframes blink { from { border-color: transparent } to { border-color: #007bff } }
+
+        .logo a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- ESPACE POUR LE CONTENU CENTRAL --- */
+        main {
+            flex: 1; /* Prend tout l'espace disponible entre header et footer */
+            padding-top: 100px; /* Évite que le contenu soit caché par le header fixe */
+            padding-bottom: 50px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #0b1120; /* Légèrement plus sombre que le fond */
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px); /* Petit bond vers le haut au survol (dynamique) */
+        }
     </style>
 </head>
 <body>
-    <h1>Veneque Fougeray Rafael — En construction</h1>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="#">[VOTRE-PRENOM]<span>.</span></a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#formation">Formation</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div style="text-align: center; margin-top: 20vh;">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">Salut, je suis <span style="color: #3b82f6;">[VOTRE-PRENOM]</span></h1>
+            <p style="color: #94a3b8; font-size: 1.2rem;">La suite du contenu viendra se placer ici...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="[LIEN-GITHUB-PROFIL]" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="[LIEN-LINKEDIN-PROFIL]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:[VOTRE-EMAIL]">Email</a>
+            </div>
+            <p>&copy; 2024 [VOTRE-PRENOM] [VOTRE-NOM]. Construit avec du code et du café.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
