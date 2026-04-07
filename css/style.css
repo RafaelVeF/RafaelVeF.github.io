@@ -1,0 +1,192 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-dark: #050505;
+    --bg-light: #111111;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --accent: #ffffff;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- TEXTURE CARBONE SUBTILE --- */
+.carbon-bg {
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-position: 0 0, 20px 20px;
+    background-size: 40px 40px;
+}
+
+/* --- EFFET SPOTLIGHT (Géré par JS) --- */
+.spotlight-target {
+    position: relative;
+    overflow: hidden;
+    /* Le dégradé suit les variables --mouse-x et --mouse-y injectées par JS */
+}
+
+.spotlight-target::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+        800px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Empêche le halo de bloquer les clics */
+    z-index: 0;
+}
+
+.spotlight-target:hover::before {
+    opacity: 1;
+}
+
+/* Tous les éléments interactifs doivent passer au-dessus du halo */
+.spotlight-target > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- HEADER --- */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.logo a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--text-muted);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    margin: 0; padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* EFFET REFLET SUR TEXTE */
+.hover-glow:hover {
+    color: var(--text-main);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* --- HERO SECTION --- */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--bg-light);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.title-reveal {
+    font-size: 4rem;
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(180deg, #ffffff 0%, #666666 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.glow-line {
+    height: 1px;
+    width: 50%;
+    margin: 30px auto 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+}
+
+/* --- FOOTER --- */
+.footer {
+    padding: 3rem 5%;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-dark);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer p {
+    color: #444;
+    font-size: 0.8rem;
+    margin: 0;
+}
