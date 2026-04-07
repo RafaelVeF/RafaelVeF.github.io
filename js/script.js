@@ -1,31 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    const spotlightTargets = document.querySelectorAll('.spotlight-target');
+    const globalTexture = document.querySelector('.global-texture'); // Mise à jour ici
 
-    const metalBg     = document.querySelector('.hex-metal-bg');
-    const glowOverlay = document.querySelector('.hex-glow-overlay');
-    const heroCard    = document.getElementById('hero-card');
+    // Valeurs par défaut pour éviter un "saut" de la lumière au chargement
+    if (globalTexture) {
+        globalTexture.style.setProperty('--mouse-x', `50vw`);
+        globalTexture.style.setProperty('--mouse-y', `50vh`);
+    }
 
     window.addEventListener('mousemove', (e) => {
-        const x = `${e.clientX}px`;
-        const y = `${e.clientY}px`;
-
-        // Mise à jour du masque de révélation hexagonale (position curseur en fixed)
-        if (metalBg) {
-            metalBg.style.setProperty('--mouse-x', x);
-            metalBg.style.setProperty('--mouse-y', y);
-        }
-        if (glowOverlay) {
-            glowOverlay.style.setProperty('--mouse-x', x);
-            glowOverlay.style.setProperty('--mouse-y', y);
+        
+        // 1. Gérer l'effet global (sur le fond fixe)
+        if (globalTexture) {
+            globalTexture.style.setProperty('--mouse-x', `${e.clientX}px`);
+            globalTexture.style.setProperty('--mouse-y', `${e.clientY}px`);
         }
 
-        // Halo interne sur la hero-card (coordonnées relatives à la carte)
-        if (heroCard) {
-            const rect = heroCard.getBoundingClientRect();
-            const cx = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
-            const cy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
-            heroCard.style.setProperty('--card-mx', cx);
-            heroCard.style.setProperty('--card-my', cy);
-        }
+        // 2. Gérer les reflets individuels (sur les composants)
+        spotlightTargets.forEach(target => {
+            const rect = target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            target.style.setProperty('--mouse-x', `${x}px`);
+            target.style.setProperty('--mouse-y', `${y}px`);
+        });
     });
-
 });
