@@ -141,7 +141,7 @@ main {
     gap: 4rem;
     max-width: 1000px;
     width: 90%; /* S'adapte à l'écran */
-    padding: 3rem;
+    padding: 4rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -156,7 +156,15 @@ main {
 .profile-photo {
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+    border-radius: 70%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+}
+
+.container-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 85%;
     object-fit: cover;
     border: 2px solid var(--border-color);
 }
