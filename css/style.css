@@ -248,6 +248,49 @@ main {
     letter-spacing: 1px;
 }
 
+/* --- AMÉLIORATION DU LAYOUT --- */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15vh; /* Espacement important entre les blocs (15% de la hauteur d'écran) */
+    padding-bottom: 20vh;
+}
+
+/* On réutilise hero-split mais on peut ajuster sa taille pour les blocs suivants */
+.hero-split {
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+}
+
+.refined-title-small {
+    font-size: 2.2rem;
+    font-weight: 200;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(180deg, #ffffff 30%, #777777 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.icon-placeholder {
+    font-size: 5rem;
+    text-align: center;
+    opacity: 0.5;
+}
+
+/* --- SYSTÈME DE REVEAL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px); /* Le bloc arrive par le bas */
+    pointer-events: none; /* Désactive les interactions tant qu'il est invisible */
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
 /* --- RESPONSIVE MOBILE --- */
 @media (max-width: 768px) {
     .hero-split {

@@ -11,13 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener('mousemove', (e) => {
         
-        // 1. Gérer l'effet global (sur le fond fixe)
         if (globalTexture) {
             globalTexture.style.setProperty('--mouse-x', `${e.clientX}px`);
             globalTexture.style.setProperty('--mouse-y', `${e.clientY}px`);
         }
 
-        // 2. Gérer les reflets individuels (sur les composants)
         spotlightTargets.forEach(target => {
             const rect = target.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -27,4 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
             target.style.setProperty('--mouse-y', `${y}px`);
         });
     });
+
+    //Reveal and scroll
+    const revealBlocks = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // revealObserver.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.15, //quand 15% de sa surface est visible
+        rootMargin: "0px 0px -50px 0px" // Déclenche un peu avant que le bloc n'entre totalement
+    });
+
+    revealBlocks.forEach(block => {
+        revealObserver.observe(block);
+    });
+
 });
