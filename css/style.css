@@ -1,17 +1,17 @@
 /* --- VARIABLES --- */
 :root {
     --bg-dark: #0a0a0a;
-    --bg-card: rgba(20, 20, 20, 0.6); /* Fond des composants légèrement plus clair */
+    --bg-card: rgba(20, 20, 20, 0.6);
     --text-main: #ffffff;
     --text-muted: #888888;
     --accent: #ffffff;
-    --border-color: rgba(255, 255, 255, 0.05); /* Bordure très subtile */
-    --font-refined: 'Segoe UI', 'Segoe UI Light', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Poids léger */
+    --border-color: rgba(255, 255, 255, 0.08);
+    --font-refined: 'Segoe UI', 'Segoe UI Light', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
-    background-color: var(--bg-dark); /* Empêche le flash blanc */
+    background-color: var(--bg-dark);
 }
 
 body {
@@ -21,34 +21,26 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* Le fond est géré par .global-texture ci-dessous */
 }
 
-/* --- LE FOND FIXE INDÉPENDANT (Global Texture) --- */
+/* --- FOND ET LUMIÈRE --- */
 .global-texture {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1; /* Reste tout au fond, derrière ton contenu */
+    z-index: -1;
     background-color: var(--bg-dark);
-    
-    /* fill-opacity='0.02' le rend extrêmement sombre et discret */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23ffffff' fill-opacity='0.05' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.31zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Le masque de lumière globale : transparent au centre pour voir la texture, noir autour */
 .global-texture::after {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(
-        600px circle at var(--mouse-x) var(--mouse-y), 
-        transparent,     
-        var(--bg-dark) 85%      
-    );
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), transparent, var(--bg-dark) 85%);
     pointer-events: none;
 }
 
-/* --- ÉLÉMENTS INDIVIDUELS QUI RÉAGISSENT (Géré par JS) --- */
+/* --- EFFETS INTERACTIFS --- */
 .spotlight-target {
     position: relative;
     overflow: hidden;
@@ -58,22 +50,16 @@ body {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(
-        400px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255, 255, 255, 0.08),
-        transparent 40%
-    );
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.08), transparent 40%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: 0;
 }
 
-.spotlight-target:hover::before {
-    opacity: 1;
-}
+.spotlight-target:hover::before { opacity: 1; }
 
-/* --- HEADER --- */
+/* --- NAVIGATION --- */
 .navbar {
     position: fixed;
     top: 0; width: 100%;
@@ -93,13 +79,9 @@ body {
     color: var(--text-main);
     text-decoration: none;
     font-size: 1.1rem;
-    font-weight: 300; /* Plus fin */
+    font-weight: 300;
     letter-spacing: 2px;
     text-transform: uppercase;
-}
-
-.logo span {
-    color: var(--text-muted);
 }
 
 .nav-links {
@@ -116,183 +98,127 @@ body {
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-.hover-glow:hover {
-    color: var(--text-main);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-}
+.nav-links a:hover { color: var(--text-main); }
 
-/* --- MAIN SECTION (SPLIT) --- */
+/* --- CONTENU PRINCIPAL --- */
 main {
-    flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-top: 120px;
-    width: 100%;
-    box-sizing: border-box; /* Évite les dépassements horizontaux */
+    gap: 12vh;
+    padding-top: 140px;
+    padding-bottom: 20vh;
 }
 
 .hero-split {
     display: flex;
     align-items: center;
     gap: 4rem;
-    max-width: 1000px;
-    width: 90%; /* S'adapte à l'écran */
+    max-width: 1100px;
+    width: 90%;
     padding: 4rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    background-color: var(--bg-card);
     box-sizing: border-box;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
 }
 
-/* GAUCHE : PHOTO */
+/* --- STYLES DES PHOTOS (LE COEUR DE TA DEMANDE) --- */
 .hero-left {
-    flex: 0 0 250px;
+    flex: 0 0 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* 1. Photo de profil : Ronde et douce */
 .profile-photo {
     width: 250px;
     height: 250px;
-    border-radius: 70%;
+    border-radius: 50%; /* Cercle parfait */
     object-fit: cover;
-    border: 2px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.5s ease;
 }
 
+/* 2. Photo de formation : Carré arrondi premium */
 .container-photo {
     width: 260px;
     height: 260px;
-    border-radius: 18px; /* carré arrondi propre */
+    border-radius: 40px; /* Arrondi généreux et moderne */
     object-fit: cover;
-    border: 2px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* optionnel mais très propre */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-/* DROITE : TEXTE */
-.hero-right {
-    flex: 1;
-    text-align: left;
+.hero-split:hover .container-photo, 
+.hero-split:hover .profile-photo {
+    transform: scale(1.03); /* Petit effet de zoom au survol du bloc */
 }
+
+/* --- TEXTES --- */
+.hero-right { flex: 1; text-align: left; }
 
 .refined-title {
     font-size: 3rem;
-    margin: 0 0 10px 0;
-    font-weight: 200; /* Très fin */
-    letter-spacing: -0.5px;
+    margin: 0 0 15px 0;
+    font-weight: 200;
+    letter-spacing: -1px;
     line-height: 1.1;
-    background: linear-gradient(180deg, #ffffff 0%, #aaaaaa 100%); /* Dégradé doux */
+    background: linear-gradient(180deg, #ffffff 0%, #aaaaaa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.title {
-    color: var(--text-muted);
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-/* BIO QUI JE SUIS */
-.short-bio {
-    color: #eee;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
-.short-bio h2 {
-    font-size: 1.2rem;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.short-bio p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.glow-line {
-    height: 1px;
-    width: 60px;
-    margin: 25px 0 0;
-    background: linear-gradient(90deg, #fff, transparent);
-}
-
-/* --- FOOTER --- */
-.footer {
-    padding: 2.5rem 5%;
-    text-align: center;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--bg-dark);
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer p {
-    color: #2a2a2a; /* Très discret */
-    font-size: 0.7rem;
-    margin: 0;
-    letter-spacing: 1px;
-}
-
-/* --- AMÉLIORATION DU LAYOUT --- */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15vh; /* Espacement important entre les blocs (15% de la hauteur d'écran) */
-    padding-bottom: 20vh;
-}
-
-/* On réutilise hero-split mais on peut ajuster sa taille pour les blocs suivants */
-.hero-split {
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
 }
 
 .refined-title-small {
     font-size: 2.2rem;
     font-weight: 200;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     letter-spacing: -0.5px;
-    background: linear-gradient(180deg, #ffffff 30%, #777777 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #fff;
 }
 
-.icon-placeholder {
-    font-size: 5rem;
-    text-align: center;
-    opacity: 0.5;
+.title {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
 }
 
-/* --- SYSTÈME DE REVEAL --- */
+.short-bio {
+    color: #ddd;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.short-bio h2 {
+    font-size: 1.1rem;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.7);
+}
+
+.glow-line {
+    height: 1px;
+    width: 80px;
+    margin: 30px 0 0;
+    background: linear-gradient(90deg, #fff, transparent);
+}
+
+/* --- REVEAL SYSTEM --- */
 .reveal {
     opacity: 0;
-    transform: translateY(50px); /* Le bloc arrive par le bas */
-    pointer-events: none; /* Désactive les interactions tant qu'il est invisible */
+    transform: translateY(40px);
+    pointer-events: none;
 }
 
 .reveal.active {
@@ -301,17 +227,21 @@ main {
     pointer-events: all;
 }
 
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 768px) {
-    .hero-split {
-        flex-direction: column; /* Passe les éléments en colonne sur téléphone */
-        text-align: center;
-        gap: 2rem; /* Réduit l'espace entre la photo et le texte */
-    }
-    .hero-right {
-        text-align: center;
-    }
-    .glow-line {
-        margin: 25px auto 0; /* Centre la ligne lumineuse */
-    }
+/* --- FOOTER --- */
+.footer {
+    padding: 4rem 5%;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+.social-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; }
+.footer p { color: #2a2a2a; font-size: 0.7rem; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 850px) {
+    .hero-split { flex-direction: column; text-align: center; padding: 3rem 2rem; }
+    .hero-right { text-align: center; }
+    .glow-line { margin: 25px auto 0; }
+    .profile-photo, .container-photo { width: 200px; height: 200px; }
 }
