@@ -917,6 +917,141 @@
             .ref-content { padding: 2rem; }
             .ref-contact { flex-direction: column; gap: 1.5rem; }
         }
+
+        /* ============================
+           CONTACT SECTION
+        ============================ */
+        .contact-wrap { max-width: 1200px; width: 100%; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .contact-text {
+            font-size: .85rem;
+            color: rgba(240,237,232,.65);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1.8rem; }
+        .c-label {
+            display: block;
+            font-size: .6rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .4rem;
+        }
+        .c-value {
+            font-size: 1.1rem;
+            font-family: var(--font-display);
+            color: var(--white);
+            text-decoration: none;
+            transition: color .3s;
+        }
+        .c-socials { display: flex; gap: 1.5rem; }
+        .c-socials a {
+            font-size: .8rem;
+            letter-spacing: .1em;
+            color: var(--accent2);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color .3s;
+        }
+        .c-socials a:hover, a.c-value:hover { color: var(--accent); }
+
+        /* FORMULAIRE */
+        .contact-form-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .form-group { position: relative; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1rem 1.2rem;
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: .85rem;
+            transition: border-color .3s, background .3s;
+            outline: none;
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Floating Labels */
+        .form-group label {
+            position: absolute;
+            left: 1.2rem;
+            top: 1rem;
+            font-size: .85rem;
+            color: var(--muted);
+            pointer-events: none;
+            transition: .3s ease all;
+        }
+        .form-group input:focus ~ label, .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:focus ~ label, .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -0.6rem;
+            left: 0.8rem;
+            font-size: .65rem;
+            background: var(--bg-card);
+            padding: 0 .4rem;
+            color: var(--accent);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .captcha-group {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .captcha-label {
+            position: static !important;
+            color: var(--white) !important;
+            font-size: .8rem !important;
+            pointer-events: auto !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            background: transparent !important;
+        }
+        .captcha-group input { width: 120px; padding: .5rem; }
+        .error-msg { color: #ff6b6b; font-size: .75rem; }
+        .form-result { font-size: .85rem; margin-top: 1rem; text-align: center; }
+        .result-success { color: #8ce99a; }
+        .result-error { color: #ff6b6b; }
+
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form-wrap { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -1283,6 +1418,90 @@
             </div>
         </section>
 
+        <section id="contact" style="background: linear-gradient(to top, rgba(14,16,20,0.9), transparent);">
+            <div class="contact-wrap">
+                <div class="section-header reveal">
+                    <span class="section-num">06</span>
+                    <h2 class="section-title">Me <em>Contacter</em></h2>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info reveal reveal-delay-1">
+                        <h3 class="contact-subtitle">Mes Coordonnées</h3>
+                        <p class="contact-text">Un projet, une opportunité ou simplement une question ? N'hésitez pas à me joindre directement via ces canaux ou le formulaire.</p>
+                        
+                        <ul class="contact-list">
+                            <li>
+                                <span class="c-label">Email</span>
+                                <a href="mailto:rafaelvenequefougeray@gmail.com" class="c-value hover-glow">rafaelvenequefougeray@gmail.com</a>
+                            </li>
+                            <li>
+                                <span class="c-label">Téléphone</span>
+                                <a href="tel:+33600000000" class="c-value hover-glow">+33 6 XX XX XX XX</a>
+                            </li>
+                            <li>
+                                <span class="c-label">Localisation</span>
+                                <span class="c-value">Amiens, Hauts-de-France (Mobile)</span>
+                            </li>
+                            <li>
+                                <span class="c-label">Réseaux</span>
+                                <div class="c-socials">
+                                    <a href="https://www.linkedin.com/in/rafael-veneque-fougeray-59498733b/" target="_blank" rel="noopener">LinkedIn</a>
+                                    <a href="https://github.com/RafaelVeF" target="_blank" rel="noopener">GitHub</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-form-wrap reveal reveal-delay-2">
+                        <form id="contactForm" class="contact-form">
+                            <input type="hidden" name="access_key" value="34b91c33-103c-4619-bb4a-c853205163b9">
+                            <input type="hidden" name="subject" value="Nouveau message depuis le Portfolio !">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" name="Nom" id="nom" required placeholder=" ">
+                                    <label for="nom">Nom</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Prenom" id="prenom" required placeholder=" ">
+                                    <label for="prenom">Prénom</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="email" name="Email" id="email" required placeholder=" ">
+                                    <label for="email">Email / Téléphone</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Objet" id="objet" required placeholder=" ">
+                                    <label for="objet">Objet</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="Message" id="message" rows="4" required placeholder=" "></textarea>
+                                <label for="message">Corps du message</label>
+                            </div>
+
+                            <div class="form-group captcha-group">
+                                <label class="captcha-label">Prouvez que vous êtes humain : <span id="captcha-question"></span></label>
+                                <input type="text" id="captcha-answer" required placeholder="Votre réponse">
+                                <span id="captcha-error" class="error-msg"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <span id="btn-text">Envoyer le message</span>
+                                <span id="btn-loader" style="display:none;">Envoi...</span>
+                            </button>
+                            <p id="form-result" class="form-result"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
@@ -1486,6 +1705,83 @@
                 document.body.style.overflow = '';
             });
         }
+    });
+
+    // ============================
+    // CAPTCHA MATHÉMATIQUE & FORMULAIRE
+    // ============================
+    const form = document.getElementById('contactForm');
+    const captchaQuestion = document.getElementById('captcha-question');
+    const captchaAnswer = document.getElementById('captcha-answer');
+    const captchaError = document.getElementById('captcha-error');
+    const formResult = document.getElementById('form-result');
+    const btnText = document.getElementById('btn-text');
+    const btnLoader = document.getElementById('btn-loader');
+    
+    let expectedCaptchaResult = 0;
+
+    // Générer un nouveau captcha
+    function generateCaptcha() {
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        expectedCaptchaResult = num1 + num2;
+        captchaQuestion.textContent = `${num1} + ${num2} = ?`;
+        captchaAnswer.value = '';
+    }
+    
+    // Initialiser au chargement
+    generateCaptcha();
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Vérification du captcha
+        if (parseInt(captchaAnswer.value) !== expectedCaptchaResult) {
+            captchaError.textContent = "Calcul incorrect. Veuillez réessayer.";
+            generateCaptcha();
+            return;
+        }
+        captchaError.textContent = "";
+
+        // UI Feedback
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline-block';
+        formResult.textContent = "";
+
+        // Récupération des données du formulaire
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        // Envoi via Web3Forms (Remplacer l'URL par l'action de ton choix si besoin)
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                formResult.textContent = "Merci, votre message a été envoyé avec succès.";
+                formResult.className = "form-result result-success";
+                form.reset();
+                generateCaptcha();
+            } else {
+                formResult.textContent = json.message;
+                formResult.className = "form-result result-error";
+            }
+        })
+        .catch(error => {
+            formResult.textContent = "Une erreur est survenue lors de l'envoi.";
+            formResult.className = "form-result result-error";
+        })
+        .finally(() => {
+            btnText.style.display = 'inline-block';
+            btnLoader.style.display = 'none';
+        });
     });
     </script>
 
