@@ -1209,12 +1209,53 @@
 
         /* Layout 2 colonnes pour certaines slides */
         .slide-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            align-items: start;
+            display: flex;
+            flex-direction: column; /* On aligne tout verticalement */
+            gap: 2rem;
+            padding: 1rem 0;
         }
-        .slide-inner.full { grid-template-columns: 1fr; }
+
+        .slide-inner.full {
+            width: 100%;
+        }
+
+        /* Style des blocs images pour qu'ils soient bien centrés et élégants */
+        .slide-img-block {
+            width: 100%;
+            max-height: 400px; /* On limite la hauteur pour ne pas trop scroller */
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.2);
+        }
+
+        .slide-img-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* L'image remplit proprement le bloc */
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .slide-img-block:hover img {
+            opacity: 1;
+        }
+
+        .slide-img-caption {
+            padding: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-align: center;
+            background: rgba(14, 16, 20, 0.8);
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+        }
+
+        /* Ajustement du texte pour qu'il ne soit pas trop large sur grand écran */
+        .slide-inner > div:first-child {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
         /* Numéro de slide */
         .slide-num {
@@ -1446,6 +1487,8 @@
             .slide-metrics { grid-template-columns: 1fr 1fr 1fr; }
             .slide-nav { padding: .8rem 1.2rem; }
         }
+
+        
 
     </style>
 </head>
@@ -2056,6 +2099,11 @@
 
                     <section class="project-slide active">
                         <div class="slide-inner">
+                            <div class="slide-img-block">
+                                <img src="pictures/citadelle-amiens.jpeg" alt="Patrimoine numérique">
+                                <div class="slide-img-caption">Citadelle d'amiens · UPJV</div>
+                            </div>
+
                             <div>
                                 <p class="slide-num">01 / 05</p>
                                 <h2>Le Contexte & L'Enjeu</h2>
@@ -2066,10 +2114,6 @@
                                     <span class="slide-tag">Patrimoine Numérique</span>
                                     <span class="slide-tag">Moissonnage de données</span>
                                 </div>
-                            </div>
-                            <div class="slide-img-block">
-                                <img src="pictures/citadelle-amiens.jpeg" alt="Patrimoine numérique">
-                                <div class="slide-img-caption">Citadelle d'amiens · UPJV</div>
                             </div>
                         </div>
                     </section>
@@ -2090,18 +2134,16 @@
 
                     <section class="project-slide">
                         <div class="slide-inner">
+                            <div class="slide-img-block">
+                                    <img src="pictures/Capture d'écran 2026-04-20 000055.png" alt="Schéma de données" style="height:100%;">
+                                    <div class="slide-img-caption">Architecture du script PHP externalisé</div>
+                                </div>
                             <div>
                                 <p class="slide-num">03 / 05</p>
                                 <h2>Ingénierie du Moteur PHP</h2>
                                 <p>J'ai développé un <strong>script PHP externalisé</strong> agissant directement avec le cœur de WordPress pour ne pas perturber l'environnement de production.</p>
                                 <p>J'ai créé des fonctions algorithmiques (comme <code>getSerializedValue</code>) pour désérialiser et extraire proprement les données brutes.</p>
                                 <p>Pour la génération, l'utilisation de <code>SimpleXML</code> aurait saturé la mémoire. J'ai donc implémenté la bibliothèque <strong>XMLWriter</strong> pour générer l'arborescence XML en flux continu.</p>
-                            </div>
-                            <div style="display:flex;flex-direction:column;gap:.8rem;">
-                                <div class="slide-img-block" style="height:100%;">
-                                    <img src="pictures/Capture d'écran 2026-04-20 000055.png" alt="Schéma de données" style="height:100%;">
-                                    <div class="slide-img-caption">Architecture du script PHP externalisé</div>
-                                </div>
                             </div>
                         </div>
                     </section>
