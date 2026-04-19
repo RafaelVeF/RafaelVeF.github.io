@@ -1052,6 +1052,52 @@
             .form-row { grid-template-columns: 1fr; }
             .contact-form-wrap { padding: 1.5rem; }
         }
+
+        /* Carte projet */
+        .proj-card {
+            position: relative;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* Effet zoom au survol */
+        .proj-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        /* Conteneur image */
+        .proj-img-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+
+            /* Position en bas */
+            align-items: flex-end;
+        }
+
+        /* Image stylée */
+        .proj-img-wrapper img {
+            width: 90%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            opacity: 0.95;
+
+            transition: transform 0.35s ease, opacity 0.35s ease;
+        }
+
+        /* Zoom image au survol de la carte */
+        .proj-card:hover .proj-img-wrapper img {
+            transform: scale(1.06);
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
@@ -1457,7 +1503,12 @@
                             <span class="proj-tag">LLM</span>
                             <span class="proj-tag">JSON</span>
                         </div>
+                        <div class="proj-img-wrapper">
+                            <img src="./pictures/Capture d'écran 2026-04-19 131108.png" alt="Aperçu du projet">
+                        </div>
                     </div>
+
+
                     <div class="proj-card reveal reveal-delay-1" onclick="openModal('modal-projet2')">
                         <span class="proj-num">002</span>
                         <h3>Application de Covoiturage</h3>
