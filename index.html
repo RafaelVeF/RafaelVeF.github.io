@@ -2059,8 +2059,8 @@
                             <div>
                                 <p class="slide-num">01 / 05</p>
                                 <h2>Le Contexte & L'Enjeu</h2>
-                                <p>Stage de 8 semaines au sein de la Plateforme Humanités Numériques (PHN) de l'UPJV[cite: 20]. La mission consistait à valoriser environ 800 objets patrimoniaux hétérogènes du site <em>Phileas</em>[cite: 38].</p>
-                                <p>L'objectif majeur : sortir les collections de leur "isolement numérique" en les rendant interopérables et conformes aux exigences du Ministère de la Culture pour être moissonnées par les agrégateurs nationaux, comme <strong>Ribambelle</strong>[cite: 46, 101].</p>
+                                <p>Stage de 8 semaines au sein de la Plateforme Humanités Numériques (PHN) de l'UPJV. La mission consistait à valoriser environ 800 objets patrimoniaux hétérogènes du site <em>Phileas</em>.</p>
+                                <p>L'objectif majeur : sortir les collections de leur "isolement numérique" en les rendant interopérables et conformes aux exigences du Ministère de la Culture pour être moissonnées par les agrégateurs nationaux, comme <strong>Ribambelle</strong>.</p>
                                 <div class="slide-tags">
                                     <span class="slide-tag">UPJV</span>
                                     <span class="slide-tag">Patrimoine Numérique</span>
@@ -2068,8 +2068,8 @@
                                 </div>
                             </div>
                             <div class="slide-img-block">
-                                <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=600&q=80" alt="Patrimoine numérique">
-                                <div class="slide-img-caption">Base de données Phileas · UPJV</div>
+                                <img src="pictures/citadelle-amiens.jpeg" alt="Patrimoine numérique">
+                                <div class="slide-img-caption">Citadelle d'amiens · UPJV</div>
                             </div>
                         </div>
                     </section>
@@ -2079,10 +2079,10 @@
                             <div>
                                 <p class="slide-num">02 / 05</p>
                                 <h2>Le défi de la base WordPress</h2>
-                                <p>Le système historique reposait sur un modèle <strong>Dublin Core "plat"</strong> de seulement 15 éléments de base[cite: 85, 86]. Ce format manquait de granularité (par exemple, impossibilité de différencier une "date de création" d'une "date de découverte")[cite: 92, 99].</p>
-                                <p>Du côté de la base de données (MariaDB), les notices étaient stockées en <em>Custom Post Types</em>[cite: 74, 81]. Une immense contrainte technique s'est imposée : les métadonnées étaient enfouies dans la table <code>wp_postmeta</code> sous forme de <strong>chaînes PHP sérialisées</strong>, les rendant inexploitables par des requêtes SQL classiques[cite: 75, 77, 79].</p>
+                                <p>Le système historique reposait sur un modèle <strong>Dublin Core "plat"</strong> de seulement 15 éléments de base. Ce format manquait de granularité (par exemple, impossibilité de différencier une "date de création" d'une "date de découverte").</p>
+                                <p>Du côté de la base de données (MariaDB), les notices étaient stockées en <em>Custom Post Types</em>. Une immense contrainte technique s'est imposée : les métadonnées étaient enfouies dans la table <code>wp_postmeta</code> sous forme de <strong>chaînes PHP sérialisées</strong>, les rendant inexploitables par des requêtes SQL classiques.</p>
                                 <div class="slide-highlight">
-                                    <p><strong>Problématique :</strong> Comment assurer l'interopérabilité des collections en automatisant la conversion d'un modèle de données simple et sérialisé vers le standard LIDO-MC hiérarchique complexe ? [cite: 54]</p>
+                                    <p><strong>Problématique :</strong> Comment assurer l'interopérabilité des collections en automatisant la conversion d'un modèle de données simple et sérialisé vers le standard LIDO-MC hiérarchique complexe ?</p>
                                 </div>
                             </div>
                         </div>
@@ -2093,13 +2093,13 @@
                             <div>
                                 <p class="slide-num">03 / 05</p>
                                 <h2>Ingénierie du Moteur PHP</h2>
-                                <p>J'ai développé un <strong>script PHP externalisé</strong> agissant directement avec le cœur de WordPress pour ne pas perturber l'environnement de production[cite: 108, 109].</p>
-                                <p>J'ai créé des fonctions algorithmiques (comme <code>getSerializedValue</code>) pour désérialiser et extraire proprement les données brutes[cite: 80, 156].</p>
-                                <p>Pour la génération, l'utilisation de <code>SimpleXML</code> aurait saturé la mémoire. J'ai donc implémenté la bibliothèque <strong>XMLWriter</strong> pour générer l'arborescence XML en flux continu[cite: 139, 140].</p>
+                                <p>J'ai développé un <strong>script PHP externalisé</strong> agissant directement avec le cœur de WordPress pour ne pas perturber l'environnement de production.</p>
+                                <p>J'ai créé des fonctions algorithmiques (comme <code>getSerializedValue</code>) pour désérialiser et extraire proprement les données brutes.</p>
+                                <p>Pour la génération, l'utilisation de <code>SimpleXML</code> aurait saturé la mémoire. J'ai donc implémenté la bibliothèque <strong>XMLWriter</strong> pour générer l'arborescence XML en flux continu.</p>
                             </div>
                             <div style="display:flex;flex-direction:column;gap:.8rem;">
                                 <div class="slide-img-block" style="height:100%;">
-                                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Code PHP" style="height:100%;">
+                                    <img src="pictures/Capture d'écran 2026-04-20 000055.png" alt="Schéma de données" style="height:100%;">
                                     <div class="slide-img-caption">Architecture du script PHP externalisé</div>
                                 </div>
                             </div>
@@ -2111,8 +2111,8 @@
                             <div>
                                 <p class="slide-num">04 / 05</p>
                                 <h2>Web Sémantique & Linked Data</h2>
-                                <p>Générer des balises XML ne suffisait pas : il fallait lier les données à des concepts universels[cite: 172, 173]. Le standard LIDO-MC est centré sur l'événement (Création, Acquisition...)[cite: 150].</p>
-                                <p>J'ai conçu et intégré une table <code>META_CONCEPTS</code> permettant de réaliser un "mapping" sémantique[cite: 192]. L'algorithme attribue désormais automatiquement des URI internationales issues de grands thésaurus (<strong>Getty AAT, Wikidata</strong>) via la fonction <code>getEventURI</code>[cite: 173, 175].</p>
+                                <p>Générer des balises XML ne suffisait pas : il fallait lier les données à des concepts universels. Le standard LIDO-MC est centré sur l'événement (Création, Acquisition...).</p>
+                                <p>J'ai conçu et intégré une table <code>META_CONCEPTS</code> permettant de réaliser un "mapping" sémantique]. L'algorithme attribue désormais automatiquement des URI internationales issues de grands thésaurus (<strong>Getty AAT, Wikidata</strong>) via la fonction <code>getEventURI</code>.</p>
                                 <div class="slide-tags">
                                     <span class="slide-tag">XMLWriter</span>
                                     <span class="slide-tag">XSD v1.1</span>
@@ -2128,8 +2128,8 @@
                             <div>
                                 <p class="slide-num">05 / 05</p>
                                 <h2>Validation & Impact</h2>
-                                <p>Le principal défi XML était l'ordre strict des balises imposé par le schéma <strong>XSD v1.1</strong>. L'algorithme vérifie dynamiquement (via <code>hasValue</code>) la présence de données avant d'ouvrir des nœuds parents, évitant ainsi de générer des balises vides qui invalideraient le flux[cite: 161, 163, 179].</p>
-                                <p>Le fichier final a passé avec succès les validateurs XSD officiels du Ministère de la Culture[cite: 188]. L'UPJV dispose désormais d'une solution sur-mesure, garantissant une totale souveraineté technique sur ses données[cite: 199, 200].</p>
+                                <p>Le principal défi XML était l'ordre strict des balises imposé par le schéma <strong>XSD v1.1</strong>. L'algorithme vérifie dynamiquement (via <code>hasValue</code>) la présence de données avant d'ouvrir des nœuds parents, évitant ainsi de générer des balises vides qui invalideraient le flux.</p>
+                                <p>Le fichier final a passé avec succès les validateurs XSD officiels du Ministère de la Culture. L'UPJV dispose désormais d'une solution sur-mesure, garantissant une totale souveraineté technique sur ses données.</p>
                                 <div class="slide-metrics">
                                     <div class="slide-metric">
                                         <span class="slide-metric-num">800</span>
