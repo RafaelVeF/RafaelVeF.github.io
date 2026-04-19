@@ -1185,11 +1185,12 @@
         .modal-slider {
             position: relative;
             overflow: hidden;
+            transition: height 0.4s cubic-bezier(.2,.8,.2,1); /* Ajout d'une transition fluide */
         }
 
         .slides-container {
             display: flex;
-            align-items: flex-start;
+            align-items: flex-start; /* Empêche l'étirement vertical des slides */
             transition: transform .48s cubic-bezier(.2,.8,.2,1);
         }
 
@@ -2030,135 +2031,140 @@
 
 
     <div id="modal-stage" class="modal">
-    <div class="modal-box">
+        <div class="modal-box">
 
-        <!-- Barre de progression -->
-        <div class="modal-progress">
-            <div class="modal-progress-fill" id="prog-stage" style="width:25%"></div>
-        </div>
-
-        <!-- Entête -->
-        <div class="modal-head">
-            <button class="modal-close" onclick="closeModal('modal-stage')">✕</button>
-            <p class="modal-tag">Projet de Stage · Étude de cas complète</p>
-            <h2 class="modal-title">LIDO-MC & <em>Interopérabilité</em></h2>
-        </div>
-
-        <!-- Onglets -->
-        <div class="modal-step-tabs" id="tabs-stage">
-            <div class="modal-tab active" onclick="setSlide('stage', 0)">Contexte</div>
-            <div class="modal-tab" onclick="setSlide('stage', 1)">Défi</div>
-            <div class="modal-tab" onclick="setSlide('stage', 2)">Architecture</div>
-            <div class="modal-tab" onclick="setSlide('stage', 3)">Impact</div>
-        </div>
-
-        <!-- Slider -->
-        <div class="modal-slider" id="slider-stage">
-            <div class="slides-container" id="container-stage">
-
-                <section class="project-slide active">
-                    <div class="slide-inner">
-                        <div>
-                            <p class="slide-num">01 / 04</p>
-                            <h2>Contexte & Mission</h2>
-                            <p>Effectué à la <strong>Plateforme Humanités Numériques (PHN)</strong> de l'UPJV. La mission consistait à valoriser <strong>800 objets patrimoniaux</strong> du site <em>Phileas</em>.</p>
-                            <p>L'objectif majeur était d'ouvrir ces collections à l'interopérabilité nationale pour permettre leur moissonnage par des agrégateurs comme <strong>Ribambelle</strong> du Ministère de la Culture.</p>
-                            <div class="slide-tags">
-                                <span class="slide-tag">UPJV</span>
-                                <span class="slide-tag">Patrimoine</span>
-                                <span class="slide-tag">Ribambelle</span>
-                            </div>
-                        </div>
-                        <div class="slide-img-block">
-                            <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=600&q=80" alt="Patrimoine numérique">
-                            <div class="slide-img-caption">Collection Phileas · UPJV</div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="project-slide">
-                    <div class="slide-inner full">
-                        <div>
-                            <p class="slide-num">02 / 04</p>
-                            <h2>Défi : Dublin Core → LIDO-MC</h2>
-                            <p>Le système reposait sur un modèle <strong>Dublin Core "plat"</strong> (15 éléments simples). Ce format manquait de granularité pour les besoins scientifiques.</p>
-                            <p>De plus, les données étaient stockées dans WordPress sous forme de <strong>chaînes PHP sérialisées</strong> dans la table <code>wp_postmeta</code>, les rendant inexploitables par de simples requêtes SQL.</p>
-                            <div class="slide-highlight">
-                                <p>Passage d'un schéma plat à une hiérarchie XML stricte, en désérialisant les données PHP avant toute transformation sémantique.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="project-slide">
-                    <div class="slide-inner">
-                        <div>
-                            <p class="slide-num">03 / 04</p>
-                            <h2>Architecture du Script PHP</h2>
-                            <p>Développement d'un <strong>script PHP externalisé</strong> utilisant la bibliothèque <strong>XMLWriter</strong> pour générer des flux en continu sans saturer la mémoire vive.</p>
-                            <p>Le script intègre un mapping sémantique complexe liant les données locales à des thésaurus mondiaux <strong>(Getty AAT, Wikidata)</strong> via le Linked Data.</p>
-                            <div class="slide-tags">
-                                <span class="slide-tag">PHP</span>
-                                <span class="slide-tag">XMLWriter</span>
-                                <span class="slide-tag">XSD v1.1</span>
-                                <span class="slide-tag">Getty AAT</span>
-                                <span class="slide-tag">Wikidata</span>
-                            </div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:.8rem;">
-                            <div class="slide-info-block">
-                                <span class="slide-info-label">Validation</span>
-                                <p>Chaque flux validé par schéma <code>XSD v1.1</code> strict avant transmission au Ministère.</p>
-                            </div>
-                            <div class="slide-accent-block">
-                                <span class="slide-accent-label">Performance</span>
-                                <p>Génération en flux continu — aucune saturation mémoire même pour 800 notices.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="project-slide">
-                    <div class="slide-inner full">
-                        <div>
-                            <p class="slide-num">04 / 04</p>
-                            <h2>Impact & Souveraineté</h2>
-                            <p>Résultat : une <strong>automatisation intégrale</strong> de la génération XML, garantissant la validité des notices auprès du Ministère.</p>
-                            <p>L'université conserve ainsi une totale <strong>souveraineté technique</strong> sur ses flux de données sans dépendre de logiciels propriétaires coûteux.</p>
-                            <div class="slide-metrics">
-                                <div class="slide-metric">
-                                    <span class="slide-metric-num">800</span>
-                                    <span class="slide-metric-label">Objets migrés</span>
-                                </div>
-                                <div class="slide-metric">
-                                    <span class="slide-metric-num blue">0€</span>
-                                    <span class="slide-metric-label">Coût logiciel</span>
-                                </div>
-                                <div class="slide-metric">
-                                    <span class="slide-metric-num">100%</span>
-                                    <span class="slide-metric-label">Automatisé</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
+            <div class="modal-progress">
+                <div class="modal-progress-fill" id="prog-stage" style="width:20%"></div>
             </div>
-        </div>
 
-        <!-- Navigation -->
-        <div class="slide-nav">
-            <button class="slide-btn" id="prev-stage" onclick="moveSlide('stage', -1)" disabled>← Précédent</button>
-            <div class="slide-nav-center">
-                <div class="nav-dots" id="dots-stage">
-                    <span class="nav-dot active" onclick="setSlide('stage', 0)"></span>
-                    <span class="nav-dot" onclick="setSlide('stage', 1)"></span>
-                    <span class="nav-dot" onclick="setSlide('stage', 2)"></span>
-                    <span class="nav-dot" onclick="setSlide('stage', 3)"></span>
+            <div class="modal-head">
+                <button class="modal-close" onclick="closeModal('modal-stage')">✕</button>
+                <p class="modal-tag">Stage · Humanités Numériques (PHN)</p>
+                <h2 class="modal-title">Interopérabilité LIDO-MC & <em>Data</em></h2>
+            </div>
+
+            <div class="modal-step-tabs" id="tabs-stage" style="overflow-x: auto;">
+                <div class="modal-tab active" onclick="setSlide('stage', 0)">1. Enjeux</div>
+                <div class="modal-tab" onclick="setSlide('stage', 1)">2. Analyse DB</div>
+                <div class="modal-tab" onclick="setSlide('stage', 2)">3. Développement</div>
+                <div class="modal-tab" onclick="setSlide('stage', 3)">4. Sémantique</div>
+                <div class="modal-tab" onclick="setSlide('stage', 4)">5. Résultats</div>
+            </div>
+
+            <div class="modal-slider" id="slider-stage">
+                <div class="slides-container" id="container-stage">
+
+                    <section class="project-slide active">
+                        <div class="slide-inner">
+                            <div>
+                                <p class="slide-num">01 / 05</p>
+                                <h2>Le Contexte & L'Enjeu</h2>
+                                <p>Stage de 8 semaines au sein de la Plateforme Humanités Numériques (PHN) de l'UPJV[cite: 20]. La mission consistait à valoriser environ 800 objets patrimoniaux hétérogènes du site <em>Phileas</em>[cite: 38].</p>
+                                <p>L'objectif majeur : sortir les collections de leur "isolement numérique" en les rendant interopérables et conformes aux exigences du Ministère de la Culture pour être moissonnées par les agrégateurs nationaux, comme <strong>Ribambelle</strong>[cite: 46, 101].</p>
+                                <div class="slide-tags">
+                                    <span class="slide-tag">UPJV</span>
+                                    <span class="slide-tag">Patrimoine Numérique</span>
+                                    <span class="slide-tag">Moissonnage de données</span>
+                                </div>
+                            </div>
+                            <div class="slide-img-block">
+                                <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=600&q=80" alt="Patrimoine numérique">
+                                <div class="slide-img-caption">Base de données Phileas · UPJV</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner full">
+                            <div>
+                                <p class="slide-num">02 / 05</p>
+                                <h2>Le défi de la base WordPress</h2>
+                                <p>Le système historique reposait sur un modèle <strong>Dublin Core "plat"</strong> de seulement 15 éléments de base[cite: 85, 86]. Ce format manquait de granularité (par exemple, impossibilité de différencier une "date de création" d'une "date de découverte")[cite: 92, 99].</p>
+                                <p>Du côté de la base de données (MariaDB), les notices étaient stockées en <em>Custom Post Types</em>[cite: 74, 81]. Une immense contrainte technique s'est imposée : les métadonnées étaient enfouies dans la table <code>wp_postmeta</code> sous forme de <strong>chaînes PHP sérialisées</strong>, les rendant inexploitables par des requêtes SQL classiques[cite: 75, 77, 79].</p>
+                                <div class="slide-highlight">
+                                    <p><strong>Problématique :</strong> Comment assurer l'interopérabilité des collections en automatisant la conversion d'un modèle de données simple et sérialisé vers le standard LIDO-MC hiérarchique complexe ? [cite: 54]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner">
+                            <div>
+                                <p class="slide-num">03 / 05</p>
+                                <h2>Ingénierie du Moteur PHP</h2>
+                                <p>J'ai développé un <strong>script PHP externalisé</strong> agissant directement avec le cœur de WordPress pour ne pas perturber l'environnement de production[cite: 108, 109].</p>
+                                <p>J'ai créé des fonctions algorithmiques (comme <code>getSerializedValue</code>) pour désérialiser et extraire proprement les données brutes[cite: 80, 156].</p>
+                                <p>Pour la génération, l'utilisation de <code>SimpleXML</code> aurait saturé la mémoire. J'ai donc implémenté la bibliothèque <strong>XMLWriter</strong> pour générer l'arborescence XML en flux continu[cite: 139, 140].</p>
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:.8rem;">
+                                <div class="slide-img-block" style="height:100%;">
+                                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Code PHP" style="height:100%;">
+                                    <div class="slide-img-caption">Architecture du script PHP externalisé</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner full">
+                            <div>
+                                <p class="slide-num">04 / 05</p>
+                                <h2>Web Sémantique & Linked Data</h2>
+                                <p>Générer des balises XML ne suffisait pas : il fallait lier les données à des concepts universels[cite: 172, 173]. Le standard LIDO-MC est centré sur l'événement (Création, Acquisition...)[cite: 150].</p>
+                                <p>J'ai conçu et intégré une table <code>META_CONCEPTS</code> permettant de réaliser un "mapping" sémantique[cite: 192]. L'algorithme attribue désormais automatiquement des URI internationales issues de grands thésaurus (<strong>Getty AAT, Wikidata</strong>) via la fonction <code>getEventURI</code>[cite: 173, 175].</p>
+                                <div class="slide-tags">
+                                    <span class="slide-tag">XMLWriter</span>
+                                    <span class="slide-tag">XSD v1.1</span>
+                                    <span class="slide-tag">Getty AAT</span>
+                                    <span class="slide-tag">Wikidata URI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner full">
+                            <div>
+                                <p class="slide-num">05 / 05</p>
+                                <h2>Validation & Impact</h2>
+                                <p>Le principal défi XML était l'ordre strict des balises imposé par le schéma <strong>XSD v1.1</strong>. L'algorithme vérifie dynamiquement (via <code>hasValue</code>) la présence de données avant d'ouvrir des nœuds parents, évitant ainsi de générer des balises vides qui invalideraient le flux[cite: 161, 163, 179].</p>
+                                <p>Le fichier final a passé avec succès les validateurs XSD officiels du Ministère de la Culture[cite: 188]. L'UPJV dispose désormais d'une solution sur-mesure, garantissant une totale souveraineté technique sur ses données[cite: 199, 200].</p>
+                                <div class="slide-metrics">
+                                    <div class="slide-metric">
+                                        <span class="slide-metric-num">800</span>
+                                        <span class="slide-metric-label">Objets migrés</span>
+                                    </div>
+                                    <div class="slide-metric">
+                                        <span class="slide-metric-num blue">100%</span>
+                                        <span class="slide-metric-label">Validé XSD v1.1</span>
+                                    </div>
+                                    <div class="slide-metric">
+                                        <span class="slide-metric-num">0€</span>
+                                        <span class="slide-metric-label">Dette technique</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
-                <span class="slide-counter" id="counter-stage">01 / 04</span>
             </div>
-            <button class="slide-btn" id="next-stage" onclick="moveSlide('stage', 1)">Suivant →</button>
+
+            <div class="slide-nav">
+                <button class="slide-btn" id="prev-stage" onclick="moveSlide('stage', -1)" disabled>← Précédent</button>
+                <div class="slide-nav-center">
+                    <div class="nav-dots" id="dots-stage">
+                        <span class="nav-dot active" onclick="setSlide('stage', 0)"></span>
+                        <span class="nav-dot" onclick="setSlide('stage', 1)"></span>
+                        <span class="nav-dot" onclick="setSlide('stage', 2)"></span>
+                        <span class="nav-dot" onclick="setSlide('stage', 3)"></span>
+                        <span class="nav-dot" onclick="setSlide('stage', 4)"></span>
+                    </div>
+                    <span class="slide-counter" id="counter-stage">01 / 05</span>
+                </div>
+                <button class="slide-btn" id="next-stage" onclick="moveSlide('stage', 1)">Suivant →</button>
+            </div>
         </div>
     </div>
 </div>
@@ -2437,7 +2443,7 @@
     }
 
     function setSlide(id, index) {
-        if (!sliderState[id]) sliderState[id] = { current: 0, total: 4 };
+        if (!sliderState[id]) sliderState[id] = { current: 0, total: 5 };
         sliderState[id].current = index;
         updateSliderUI(id);
     }
@@ -2456,28 +2462,33 @@
         // Déplacement du container
         container.style.transform = `translateX(-${current * 100}%)`;
 
-        // Activation de la slide courante (pour l'animation fade-in)
+        // Activation de la slide courante
         slides.forEach((s, i) => s.classList.toggle('active', i === current));
 
-        // Dots
+        // AJOUT : Ajustement dynamique de la hauteur de la modal
+        const activeSlide = slides[current];
+        const sliderWrapper = document.getElementById(`slider-${id}`);
+        if(sliderWrapper && activeSlide) {
+            sliderWrapper.style.height = activeSlide.offsetHeight + 'px';
+        }
+
+        // Mise à jour de l'UI
         dots?.forEach((d, i) => d.classList.toggle('active', i === current));
-
-        // Onglets
         tabs?.forEach((t, i) => t.classList.toggle('active', i === current));
-
-        // Barre de progression
         if (prog) prog.style.width = `${((current + 1) / total) * 100}%`;
-
-        // Compteur
         if (counter) counter.textContent = `0${current + 1} / 0${total}`;
-
-        // Boutons prev/next
         if (btnPrev) btnPrev.disabled = current === 0;
         if (btnNext) btnNext.disabled = current === total - 1;
     }
 
-    // Initialisation de tous les sliders présents
-    ['stage'].forEach(id => initSlider(id));
+    // AJOUT : Recalculer la hauteur si on redimensionne la fenêtre
+    window.addEventListener('resize', () => {
+        ['stage'].forEach(id => {
+            if(document.getElementById(`modal-${id}`).classList.contains('show')) {
+                updateSliderUI(id);
+            }
+        });
+    });
 
     </script>
 
