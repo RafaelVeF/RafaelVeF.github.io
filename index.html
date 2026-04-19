@@ -1098,6 +1098,64 @@
             opacity: 1;
         }
 
+        /* --- STYLE DES SLIDES DANS LES MODALS --- */
+        .modal-slider {
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .project-slide {
+            min-width: 100%;
+            padding: 10px;
+        }
+
+        /* Navigation des slides */
+        .slide-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--muted);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            transform: scale(1.5);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .slide-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 5px 15px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slide-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
     </style>
 </head>
 <body>
@@ -1151,6 +1209,9 @@
                     </blockquote>
                     <div class="hero-cta reveal reveal-delay-4">
                         <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+                        <a href="assets/CV.pdf" download="./assets/CV_2026-01-24_Rafael_Veneque Fougeray.pdf" class="btn btn-outline">
+                            <span>⬇</span> Télécharger mon CV
+                        </a>
                         <a href="mailto:rafaelvenequefougeray@gmail.com" class="btn btn-outline">Me contacter</a>
                     </div>
                 </div>
@@ -1679,19 +1740,61 @@
 
 
     <div id="modal-stage" class="modal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('modal-stage')">✕</button>
-            <p class="modal-tag">Stage · Janv.–Mars 2026</p>
-            <h2 class="modal-title">Interopérabilité des données patrimoniales</h2>
-            <div class="modal-body">
-                <p><strong>Le contexte :</strong> Lors de mon stage à la Plateforme Humanités Numériques (PHN) de l'UPJV, j'ai été chargé de valoriser numériquement 800 objets patrimoniaux. L'enjeu : rendre ces données accessibles aux grands agrégateurs du Ministère de la Culture.</p>
-                <p><strong>Le défi technique :</strong> Le système existant reposait sur WordPress et le modèle "Dublin Core" — un format plat où les données (mesures, matériaux, etc.) étaient enfouies dans des chaînes PHP sérialisées. Je devais automatiser la conversion vers le standard "LIDO-MC", un modèle XML hiérarchique extrêmement strict.</p>
-                <p><strong>Ma solution :</strong> J'ai développé un moteur de conversion en PHP (script externalisé pour ne pas altérer le cœur de WordPress). J'ai créé un système de "mapping" sémantique reliant les bases locales à des thésaurus internationaux via Linked Data (Wikidata et Getty AAT). Mon algorithme de désérialisation extrayait les données brutes, vérifiait leur validité, puis la bibliothèque XMLWriter générait les flux XML en continu.</p>
-                <p><strong>Le résultat :</strong> Les fichiers XML générés ont passé avec succès les tests rigoureux du validateur XSD du Ministère de la Culture. J'ai prouvé ma capacité à travailler en autonomie sur des normes complexes, tout en collaborant avec une équipe pluridisciplinaire de chercheurs.</p>
-                <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=1200&q=80" alt="Illustration XML / Architecture" class="proj-modal-img">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-stage')">✕</button>
+        <p class="modal-tag">Projet de Stage · Étude de cas complète</p>
+        
+        <div class="modal-slider" id="slider-stage">
+            <div class="slides-container" id="container-stage">
+                
+                <section class="project-slide">
+                    <h2 class="modal-title">01. Contexte & Mission</h2>
+                    <div class="modal-body">
+                        <p>Effectué à la <strong>Plateforme Humanités Numériques (PHN)</strong> de l'UPJV[cite: 20, 21]. La mission consistait à valoriser 800 objets patrimoniaux du site <em>Phileas</em>[cite: 37, 38].</p>
+                        <p>L'objectif majeur était d'ouvrir ces collections à l'interopérabilité nationale pour permettre leur moissonnage par des agrégateurs comme <strong>Ribambelle</strong> du Ministère de la Culture[cite: 46].</p>
+                        <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=1200&q=80" class="proj-modal-img">
+                    </div>
+                </section>
+
+                <section class="project-slide">
+                    <h2 class="modal-title">02. Défi : Dublin Core vers LIDO-MC</h2>
+                    <div class="modal-body">
+                        <p>Le système reposait sur un modèle <strong>Dublin Core "plat"</strong> (15 éléments simples)[cite: 85, 86]. Ce format manquait de granularité pour les besoins scientifiques[cite: 99].</p>
+                        <p>De plus, les données étaient stockées dans WordPress sous forme de <strong>chaînes PHP sérialisées</strong> dans la table <code>wp_postmeta</code>, les rendant inexploitables par de simples requêtes SQL[cite: 75, 77, 80].</p>
+                    </div>
+                </section>
+
+                <section class="project-slide">
+                    <h2 class="modal-title">03. Architecture du Script PHP</h2>
+                    <div class="modal-body">
+                        <p>Développement d'un <strong>script PHP externalisé</strong> utilisant la bibliothèque <strong>XMLWriter</strong> pour générer des flux en continu sans saturer la mémoire vive[cite: 137, 139].</p>
+                        <p>Le script intègre un "mapping" sémantique complexe liant les données locales à des thésaurus mondiaux (Getty AAT, Wikidata) via le <strong>Linked Data</strong>[cite: 173, 175]. Chaque flux a été validé par un schéma <strong>XSD v1.1</strong> strict[cite: 179, 188].</p>
+                    </div>
+                </section>
+
+                <section class="project-slide">
+                    <h2 class="modal-title">04. Impact & Souveraineté</h2>
+                    <div class="modal-body">
+                        <p>Résultat : une <strong>automatisation intégrale</strong> de la génération XML, garantissant la validité des notices auprès du Ministère[cite: 186, 189].</p>
+                        <p>L'université conserve ainsi une totale <strong>souveraineté technique</strong> sur ses flux de données sans dépendre de logiciels propriétaires coûteux[cite: 199, 200].</p>
+                    </div>
+                </section>
+
             </div>
         </div>
+
+        <div class="slide-nav">
+            <button class="slide-btn" onclick="moveSlide('stage', -1)">Précédent</button>
+            <div class="dots-group">
+                <span class="nav-dot active" onclick="setSlide('stage', 0)"></span>
+                <span class="nav-dot" onclick="setSlide('stage', 1)"></span>
+                <span class="nav-dot" onclick="setSlide('stage', 2)"></span>
+                <span class="nav-dot" onclick="setSlide('stage', 3)"></span>
+            </div>
+            <button class="slide-btn" onclick="moveSlide('stage', 1)">Suivant</button>
+        </div>
     </div>
+</div>
 
     <div id="modal-projet1" class="modal">
         <div class="modal-box">
@@ -1946,6 +2049,41 @@
             btnLoader.style.display = 'none';
         });
     });
+
+    // --- LOGIQUE DU SLIDER DE PROJET ---
+    let currentSlides = {
+        'stage': 0,
+        'projet1': 0,
+        // ajoute d'autres IDs si besoin
+    };
+
+    function moveSlide(projectId, direction) {
+        const container = document.getElementById(`container-${projectId}`);
+        const slides = container.querySelectorAll('.project-slide');
+        const totalSlides = slides.length;
+        
+        currentSlides[projectId] = (currentSlides[projectId] + direction + totalSlides) % totalSlides;
+        updateSliderUI(projectId);
+    }
+
+    function setSlide(projectId, index) {
+        currentSlides[projectId] = index;
+        updateSliderUI(projectId);
+    }
+
+    function updateSliderUI(projectId) {
+        const container = document.getElementById(`container-${projectId}`);
+        const dots = container.closest('.modal-box').querySelectorAll('.nav-dot');
+        
+        // Déplacement du container
+        container.style.transform = `translateX(-${currentSlides[projectId] * 100}%)`;
+        
+        // Mise à jour des points de navigation
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentSlides[projectId]);
+        });
+    }
+
     </script>
 
 </body>
