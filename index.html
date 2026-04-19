@@ -1766,7 +1766,7 @@
     resizeCanvas();
 
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()<>{}[]/|\\~';
-    const fontSize = 12;
+    const fontSize = 14;
     const columns = canvas.width / fontSize;
     const drops = Array.from({ length: Math.floor(columns) }).fill(1);
 
@@ -1776,7 +1776,7 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Couleur du texte (blanc transparent pour la légèreté)
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; 
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'; 
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
