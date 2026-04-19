@@ -816,53 +816,136 @@
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
         .modal-box {
-            background: rgba(14,16,20,.95);
+            background: #0e1014;
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: clamp(2rem, 5vw, 4rem);
             max-width: 780px;
             width: 100%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
+            overflow-x: hidden;
             position: relative;
             animation: slide-up .35s cubic-bezier(.2,.8,.2,1);
         }
         @keyframes slide-up { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
+        /* Glow décoratif */
+        .modal-box::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(201,169,110,.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Barre de progression en haut */
+        .modal-progress {
+            height: 2px;
+            background: rgba(255,255,255,.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .modal-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width .45s cubic-bezier(.2,.8,.2,1);
+        }
+
+        /* Entête de la modal */
+        .modal-head {
+            padding: 1.6rem 2rem 1rem;
+            position: relative;
+            z-index: 1;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+        }
+        .modal-tag {
+            font-size: .58rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .7rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+        .modal-tag::before {
+            content: '';
+            display: block;
+            width: 20px; height: 1px;
+            background: var(--accent);
+            opacity: .6;
+        }
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 300;
+            letter-spacing: -.02em;
+            line-height: 1.1;
+            color: var(--white);
+        }
+        .modal-title em { font-style: italic; color: var(--accent); }
+
         .modal-close {
             position: absolute;
-            top: 1.5rem; right: 1.5rem;
-            background: none; border: none;
-            color: var(--muted); font-size: 1.2rem;
+            top: 1.2rem; right: 1.2rem;
+            background: none;
+            color: rgba(240,237,232,.4);
+            font-size: .85rem;
             cursor: pointer;
-            width: 36px; height: 36px;
+            width: 30px; height: 30px;
             display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,255,255,.1);
             border-radius: 2px;
-            transition: all .25s;
+            transition: all .2s;
         }
-        .modal-close:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
+        .modal-close:hover { color: var(--white); border-color: rgba(255,255,255,.25); }
 
-        .modal-tag { font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-        .modal-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -.02em; margin-bottom: 2rem; line-height: 1.1; }
-        
-        .modal-body p { font-size: .82rem; color: rgba(240,237,232,.65); line-height: 2; margin-bottom: 1.5rem; }
+        /* Onglets de navigation par étape */
+        .modal-step-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .modal-tab {
+            font-size: .58rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            padding: .8rem .6rem;
+            color: rgba(240,237,232,.3);
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+            transition: all .25s;
+            white-space: nowrap;
+        }
+        .modal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .modal-tab:hover:not(.active) { color: rgba(240,237,232,.6); }
+
+        /* Corps modal standard (modals sans slider) */
+        .modal-body { padding: 1.8rem 2rem; position: relative; z-index: 1; }
+        .modal-body p { font-size: .78rem; color: rgba(240,237,232,.62); line-height: 1.95; margin-bottom: 1rem; }
+        .modal-body p:last-child { margin-bottom: 0; }
         .modal-body strong { color: var(--white); font-weight: 400; }
         .modal-body ul { list-style: none; padding: 0; }
-        .modal-body li { font-size: .82rem; color: rgba(240,237,232,.65); line-height: 2; padding-left: 1.2rem; position: relative; margin-bottom: .5rem; }
+        .modal-body li { font-size: .78rem; color: rgba(240,237,232,.62); line-height: 2; padding-left: 1.2rem; position: relative; margin-bottom: .5rem; }
         .modal-body li::before { content: '—'; position: absolute; left: 0; color: var(--accent); opacity: .6; }
 
-        /* Image en bas de modal */
+        /* Image dans modal standard */
         .proj-modal-img {
             display: block;
             width: 100%;
             max-width: 600px;
             height: auto;
-            margin: 2.5rem auto 0;
-            border-radius: 12px;
+            margin: 2rem auto 0;
+            border-radius: 6px;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            filter: brightness(.85) saturate(.9);
+            transition: filter .4s;
         }
+        .proj-modal-img:hover { filter: brightness(.95) saturate(1); }
 
         /* ============================
            REVEAL SYSTEM
@@ -1102,58 +1185,264 @@
         .modal-slider {
             position: relative;
             overflow: hidden;
-            margin-top: 2rem;
         }
 
         .slides-container {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: transform .48s cubic-bezier(.2,.8,.2,1);
         }
 
         .project-slide {
             min-width: 100%;
-            padding: 10px;
+            padding: 1.8rem 2rem;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity .4s ease .1s, transform .4s cubic-bezier(.2,.8,.2,1) .1s;
+        }
+        .project-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Layout 2 colonnes pour certaines slides */
+        .slide-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        .slide-inner.full { grid-template-columns: 1fr; }
+
+        /* Numéro de slide */
+        .slide-num {
+            font-size: .6rem;
+            letter-spacing: .2em;
+            color: rgba(201,169,110,.5);
+            margin-bottom: .6rem;
+        }
+
+        /* Titres & texte dans les slides */
+        .project-slide h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: .9rem;
+            line-height: 1.2;
+        }
+        .project-slide p {
+            font-size: .75rem;
+            color: rgba(240,237,232,.6);
+            line-height: 1.9;
+            margin-bottom: .8rem;
+        }
+        .project-slide p:last-child { margin-bottom: 0; }
+        .project-slide strong { color: var(--white); font-weight: 400; }
+        .project-slide code {
+            font-family: var(--font-mono);
+            font-size: .7rem;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            padding: .1em .35em;
+            border-radius: 2px;
+            color: var(--accent2);
+        }
+
+        /* Bloc highlight dans les slides */
+        .slide-highlight {
+            background: rgba(201,169,110,.05);
+            border: 1px solid rgba(201,169,110,.12);
+            border-left: 2px solid rgba(201,169,110,.5);
+            border-radius: 0 4px 4px 0;
+            padding: .9rem 1rem;
+            margin-top: .8rem;
+        }
+        .slide-highlight p {
+            color: rgba(240,237,232,.7) !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Bloc info dans les slides */
+        .slide-info-block {
+            background: rgba(126,184,201,.05);
+            border: 1px solid rgba(126,184,201,.1);
+            border-radius: 4px;
+            padding: .9rem 1rem;
+        }
+        .slide-info-label {
+            font-size: .58rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: .5rem;
+            display: block;
+        }
+        .slide-info-block p { color: rgba(240,237,232,.6) !important; margin-bottom: 0 !important; }
+
+        .slide-accent-block {
+            background: rgba(201,169,110,.05);
+            border: 1px solid rgba(201,169,110,.1);
+            border-radius: 4px;
+            padding: .9rem 1rem;
+        }
+        .slide-accent-label {
+            font-size: .58rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .5rem;
+            display: block;
+        }
+        .slide-accent-block p { color: rgba(240,237,232,.6) !important; margin-bottom: 0 !important; }
+
+        /* Image dans une slide */
+        .slide-img-block {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.07);
+        }
+        .slide-img-block img {
+            display: block;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            filter: brightness(.8) saturate(.9);
+            transition: filter .4s;
+        }
+        .slide-img-block:hover img { filter: brightness(.9) saturate(1); }
+        .slide-img-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: .6rem .8rem;
+            background: linear-gradient(to top, rgba(7,8,10,.9), transparent);
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(240,237,232,.5);
+        }
+
+        /* Tags tech dans les slides */
+        .slide-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-top: .8rem;
+        }
+        .slide-tag {
+            padding: .2rem .55rem;
+            background: rgba(126,184,201,.07);
+            border: 1px solid rgba(126,184,201,.15);
+            border-radius: 2px;
+            font-size: .58rem;
+            letter-spacing: .1em;
+            color: var(--accent2);
+        }
+
+        /* Métriques (slide Impact) */
+        .slide-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .8rem;
+            margin-top: 1rem;
+        }
+        .slide-metric {
+            text-align: center;
+            padding: 1rem .8rem;
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 4px;
+        }
+        .slide-metric-num {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            display: block;
+        }
+        .slide-metric-num.blue { color: var(--accent2); }
+        .slide-metric-label {
+            font-size: .55rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(240,237,232,.35);
+            margin-top: .3rem;
+            display: block;
         }
 
         /* Navigation des slides */
         .slide-nav {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .nav-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--muted);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .nav-dot.active {
-            background: var(--accent);
-            transform: scale(1.5);
-            box-shadow: 0 0 10px var(--accent);
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-top: 1px solid rgba(255,255,255,.05);
         }
 
         .slide-btn {
             background: none;
-            border: 1px solid var(--border);
-            color: var(--white);
-            padding: 5px 15px;
+            border: 1px solid rgba(255,255,255,.1);
+            color: rgba(240,237,232,.5);
+            padding: .45rem 1.2rem;
             font-family: var(--font-mono);
-            font-size: 0.7rem;
+            font-size: .62rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s;
+            border-radius: 2px;
+            transition: all .25s;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .slide-btn:hover:not(:disabled) { border-color: rgba(201,169,110,.4); color: var(--accent); }
+        .slide-btn:disabled { opacity: .2; cursor: not-allowed; }
+
+        .slide-nav-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
         }
 
-        .slide-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+        .nav-dots {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+        }
+
+        .nav-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.15);
+            cursor: pointer;
+            transition: all .3s;
+        }
+        .nav-dot.active {
+            background: var(--accent);
+            width: 18px;
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(201,169,110,.4);
+        }
+
+        .slide-counter {
+            font-size: .6rem;
+            letter-spacing: .2em;
+            color: rgba(240,237,232,.25);
+        }
+
+        /* Responsive modal */
+        @media (max-width: 600px) {
+            .modal-step-tabs { padding: 0 1rem; gap: 0; }
+            .modal-tab { font-size: .52rem; padding: .7rem .4rem; }
+            .modal-head { padding: 1.2rem 1.2rem .8rem; }
+            .project-slide { padding: 1.2rem; }
+            .slide-inner { grid-template-columns: 1fr; }
+            .slide-metrics { grid-template-columns: 1fr 1fr 1fr; }
+            .slide-nav { padding: .8rem 1.2rem; }
         }
 
     </style>
@@ -1741,57 +2030,134 @@
 
     <div id="modal-stage" class="modal">
     <div class="modal-box">
-        <button class="modal-close" onclick="closeModal('modal-stage')">✕</button>
-        <p class="modal-tag">Projet de Stage · Étude de cas complète</p>
-        
+
+        <!-- Barre de progression -->
+        <div class="modal-progress">
+            <div class="modal-progress-fill" id="prog-stage" style="width:25%"></div>
+        </div>
+
+        <!-- Entête -->
+        <div class="modal-head">
+            <button class="modal-close" onclick="closeModal('modal-stage')">✕</button>
+            <p class="modal-tag">Projet de Stage · Étude de cas complète</p>
+            <h2 class="modal-title">LIDO-MC & <em>Interopérabilité</em></h2>
+        </div>
+
+        <!-- Onglets -->
+        <div class="modal-step-tabs" id="tabs-stage">
+            <div class="modal-tab active" onclick="setSlide('stage', 0)">Contexte</div>
+            <div class="modal-tab" onclick="setSlide('stage', 1)">Défi</div>
+            <div class="modal-tab" onclick="setSlide('stage', 2)">Architecture</div>
+            <div class="modal-tab" onclick="setSlide('stage', 3)">Impact</div>
+        </div>
+
+        <!-- Slider -->
         <div class="modal-slider" id="slider-stage">
             <div class="slides-container" id="container-stage">
-                
-                <section class="project-slide">
-                    <h2 class="modal-title">01. Contexte & Mission</h2>
-                    <div class="modal-body">
-                        <p>Effectué à la <strong>Plateforme Humanités Numériques (PHN)</strong> de l'UPJV[cite: 20, 21]. La mission consistait à valoriser 800 objets patrimoniaux du site <em>Phileas</em>[cite: 37, 38].</p>
-                        <p>L'objectif majeur était d'ouvrir ces collections à l'interopérabilité nationale pour permettre leur moissonnage par des agrégateurs comme <strong>Ribambelle</strong> du Ministère de la Culture[cite: 46].</p>
-                        <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=1200&q=80" class="proj-modal-img">
+
+                <section class="project-slide active">
+                    <div class="slide-inner">
+                        <div>
+                            <p class="slide-num">01 / 04</p>
+                            <h2>Contexte & Mission</h2>
+                            <p>Effectué à la <strong>Plateforme Humanités Numériques (PHN)</strong> de l'UPJV. La mission consistait à valoriser <strong>800 objets patrimoniaux</strong> du site <em>Phileas</em>.</p>
+                            <p>L'objectif majeur était d'ouvrir ces collections à l'interopérabilité nationale pour permettre leur moissonnage par des agrégateurs comme <strong>Ribambelle</strong> du Ministère de la Culture.</p>
+                            <div class="slide-tags">
+                                <span class="slide-tag">UPJV</span>
+                                <span class="slide-tag">Patrimoine</span>
+                                <span class="slide-tag">Ribambelle</span>
+                            </div>
+                        </div>
+                        <div class="slide-img-block">
+                            <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=600&q=80" alt="Patrimoine numérique">
+                            <div class="slide-img-caption">Collection Phileas · UPJV</div>
+                        </div>
                     </div>
                 </section>
 
                 <section class="project-slide">
-                    <h2 class="modal-title">02. Défi : Dublin Core vers LIDO-MC</h2>
-                    <div class="modal-body">
-                        <p>Le système reposait sur un modèle <strong>Dublin Core "plat"</strong> (15 éléments simples)[cite: 85, 86]. Ce format manquait de granularité pour les besoins scientifiques[cite: 99].</p>
-                        <p>De plus, les données étaient stockées dans WordPress sous forme de <strong>chaînes PHP sérialisées</strong> dans la table <code>wp_postmeta</code>, les rendant inexploitables par de simples requêtes SQL[cite: 75, 77, 80].</p>
+                    <div class="slide-inner full">
+                        <div>
+                            <p class="slide-num">02 / 04</p>
+                            <h2>Défi : Dublin Core → LIDO-MC</h2>
+                            <p>Le système reposait sur un modèle <strong>Dublin Core "plat"</strong> (15 éléments simples). Ce format manquait de granularité pour les besoins scientifiques.</p>
+                            <p>De plus, les données étaient stockées dans WordPress sous forme de <strong>chaînes PHP sérialisées</strong> dans la table <code>wp_postmeta</code>, les rendant inexploitables par de simples requêtes SQL.</p>
+                            <div class="slide-highlight">
+                                <p>Passage d'un schéma plat à une hiérarchie XML stricte, en désérialisant les données PHP avant toute transformation sémantique.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <section class="project-slide">
-                    <h2 class="modal-title">03. Architecture du Script PHP</h2>
-                    <div class="modal-body">
-                        <p>Développement d'un <strong>script PHP externalisé</strong> utilisant la bibliothèque <strong>XMLWriter</strong> pour générer des flux en continu sans saturer la mémoire vive[cite: 137, 139].</p>
-                        <p>Le script intègre un "mapping" sémantique complexe liant les données locales à des thésaurus mondiaux (Getty AAT, Wikidata) via le <strong>Linked Data</strong>[cite: 173, 175]. Chaque flux a été validé par un schéma <strong>XSD v1.1</strong> strict[cite: 179, 188].</p>
+                    <div class="slide-inner">
+                        <div>
+                            <p class="slide-num">03 / 04</p>
+                            <h2>Architecture du Script PHP</h2>
+                            <p>Développement d'un <strong>script PHP externalisé</strong> utilisant la bibliothèque <strong>XMLWriter</strong> pour générer des flux en continu sans saturer la mémoire vive.</p>
+                            <p>Le script intègre un mapping sémantique complexe liant les données locales à des thésaurus mondiaux <strong>(Getty AAT, Wikidata)</strong> via le Linked Data.</p>
+                            <div class="slide-tags">
+                                <span class="slide-tag">PHP</span>
+                                <span class="slide-tag">XMLWriter</span>
+                                <span class="slide-tag">XSD v1.1</span>
+                                <span class="slide-tag">Getty AAT</span>
+                                <span class="slide-tag">Wikidata</span>
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:.8rem;">
+                            <div class="slide-info-block">
+                                <span class="slide-info-label">Validation</span>
+                                <p>Chaque flux validé par schéma <code>XSD v1.1</code> strict avant transmission au Ministère.</p>
+                            </div>
+                            <div class="slide-accent-block">
+                                <span class="slide-accent-label">Performance</span>
+                                <p>Génération en flux continu — aucune saturation mémoire même pour 800 notices.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <section class="project-slide">
-                    <h2 class="modal-title">04. Impact & Souveraineté</h2>
-                    <div class="modal-body">
-                        <p>Résultat : une <strong>automatisation intégrale</strong> de la génération XML, garantissant la validité des notices auprès du Ministère[cite: 186, 189].</p>
-                        <p>L'université conserve ainsi une totale <strong>souveraineté technique</strong> sur ses flux de données sans dépendre de logiciels propriétaires coûteux[cite: 199, 200].</p>
+                    <div class="slide-inner full">
+                        <div>
+                            <p class="slide-num">04 / 04</p>
+                            <h2>Impact & Souveraineté</h2>
+                            <p>Résultat : une <strong>automatisation intégrale</strong> de la génération XML, garantissant la validité des notices auprès du Ministère.</p>
+                            <p>L'université conserve ainsi une totale <strong>souveraineté technique</strong> sur ses flux de données sans dépendre de logiciels propriétaires coûteux.</p>
+                            <div class="slide-metrics">
+                                <div class="slide-metric">
+                                    <span class="slide-metric-num">800</span>
+                                    <span class="slide-metric-label">Objets migrés</span>
+                                </div>
+                                <div class="slide-metric">
+                                    <span class="slide-metric-num blue">0€</span>
+                                    <span class="slide-metric-label">Coût logiciel</span>
+                                </div>
+                                <div class="slide-metric">
+                                    <span class="slide-metric-num">100%</span>
+                                    <span class="slide-metric-label">Automatisé</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
             </div>
         </div>
 
+        <!-- Navigation -->
         <div class="slide-nav">
-            <button class="slide-btn" onclick="moveSlide('stage', -1)">Précédent</button>
-            <div class="dots-group">
-                <span class="nav-dot active" onclick="setSlide('stage', 0)"></span>
-                <span class="nav-dot" onclick="setSlide('stage', 1)"></span>
-                <span class="nav-dot" onclick="setSlide('stage', 2)"></span>
-                <span class="nav-dot" onclick="setSlide('stage', 3)"></span>
+            <button class="slide-btn" id="prev-stage" onclick="moveSlide('stage', -1)" disabled>← Précédent</button>
+            <div class="slide-nav-center">
+                <div class="nav-dots" id="dots-stage">
+                    <span class="nav-dot active" onclick="setSlide('stage', 0)"></span>
+                    <span class="nav-dot" onclick="setSlide('stage', 1)"></span>
+                    <span class="nav-dot" onclick="setSlide('stage', 2)"></span>
+                    <span class="nav-dot" onclick="setSlide('stage', 3)"></span>
+                </div>
+                <span class="slide-counter" id="counter-stage">01 / 04</span>
             </div>
-            <button class="slide-btn" onclick="moveSlide('stage', 1)">Suivant</button>
+            <button class="slide-btn" id="next-stage" onclick="moveSlide('stage', 1)">Suivant →</button>
         </div>
     </div>
 </div>
@@ -2051,38 +2417,66 @@
     });
 
     // --- LOGIQUE DU SLIDER DE PROJET ---
-    let currentSlides = {
-        'stage': 0,
-        'projet1': 0,
-        // ajoute d'autres IDs si besoin
-    };
+    const sliderState = {};
 
-    function moveSlide(projectId, direction) {
-        const container = document.getElementById(`container-${projectId}`);
+    function initSlider(id) {
+        const container = document.getElementById(`container-${id}`);
+        if (!container) return;
         const slides = container.querySelectorAll('.project-slide');
-        const totalSlides = slides.length;
-        
-        currentSlides[projectId] = (currentSlides[projectId] + direction + totalSlides) % totalSlides;
-        updateSliderUI(projectId);
+        sliderState[id] = { current: 0, total: slides.length };
+        updateSliderUI(id);
     }
 
-    function setSlide(projectId, index) {
-        currentSlides[projectId] = index;
-        updateSliderUI(projectId);
+    function moveSlide(id, direction) {
+        if (!sliderState[id]) return;
+        const { current, total } = sliderState[id];
+        const next = Math.min(Math.max(current + direction, 0), total - 1);
+        sliderState[id].current = next;
+        updateSliderUI(id);
     }
 
-    function updateSliderUI(projectId) {
-        const container = document.getElementById(`container-${projectId}`);
-        const dots = container.closest('.modal-box').querySelectorAll('.nav-dot');
-        
+    function setSlide(id, index) {
+        if (!sliderState[id]) sliderState[id] = { current: 0, total: 4 };
+        sliderState[id].current = index;
+        updateSliderUI(id);
+    }
+
+    function updateSliderUI(id) {
+        const { current, total } = sliderState[id];
+        const container  = document.getElementById(`container-${id}`);
+        const slides     = container.querySelectorAll('.project-slide');
+        const dots       = document.getElementById(`dots-${id}`)?.querySelectorAll('.nav-dot');
+        const tabs       = document.getElementById(`tabs-${id}`)?.querySelectorAll('.modal-tab');
+        const prog       = document.getElementById(`prog-${id}`);
+        const counter    = document.getElementById(`counter-${id}`);
+        const btnPrev    = document.getElementById(`prev-${id}`);
+        const btnNext    = document.getElementById(`next-${id}`);
+
         // Déplacement du container
-        container.style.transform = `translateX(-${currentSlides[projectId] * 100}%)`;
-        
-        // Mise à jour des points de navigation
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentSlides[projectId]);
-        });
+        container.style.transform = `translateX(-${current * 100}%)`;
+
+        // Activation de la slide courante (pour l'animation fade-in)
+        slides.forEach((s, i) => s.classList.toggle('active', i === current));
+
+        // Dots
+        dots?.forEach((d, i) => d.classList.toggle('active', i === current));
+
+        // Onglets
+        tabs?.forEach((t, i) => t.classList.toggle('active', i === current));
+
+        // Barre de progression
+        if (prog) prog.style.width = `${((current + 1) / total) * 100}%`;
+
+        // Compteur
+        if (counter) counter.textContent = `0${current + 1} / 0${total}`;
+
+        // Boutons prev/next
+        if (btnPrev) btnPrev.disabled = current === 0;
+        if (btnNext) btnNext.disabled = current === total - 1;
     }
+
+    // Initialisation de tous les sliders présents
+    ['stage'].forEach(id => initSlider(id));
 
     </script>
 
