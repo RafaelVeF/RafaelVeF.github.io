@@ -1242,13 +1242,20 @@
         }
 
         .slide-img-caption {
-            padding: 0.8rem;
-            font-size: 0.75rem;
-            color: var(--muted);
-            text-align: center;
-            background: rgba(14, 16, 20, 0.8);
-            border-top: 1px solid var(--border);
+            position: absolute;
+            bottom: 0; 
+            left: 0; 
+            right: 0;
+            padding: .6rem .8rem;
+            /* Le dégradé assure que le texte blanc reste lisible peu importe l'image derrière */
+            background: linear-gradient(to top, rgba(7,8,10,0.95), transparent);
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(240,237,232,.5);
+            text-align: center; /* Pour une harmonie parfaite avec le layout vertical */
             font-family: var(--font-mono);
+            z-index: 2;
         }
 
         /* Ajustement du texte pour qu'il ne soit pas trop large sur grand écran */
@@ -1341,20 +1348,36 @@
 
         /* Image dans une slide */
         .slide-img-block {
-            position: relative;
-            border-radius: 6px;
+            width: 100%;
+            /* On réduit la hauteur maximale pour laisser de la place au texte sans scroller */
+            height: 300px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2); /* Fond sombre pour les photos avec des formats différents */
+            border-radius: 8px;
+            border: 1px solid var(--border);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,.07);
+            margin-bottom: 1.5rem;
         }
         .slide-img-block img {
-            display: block;
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            filter: brightness(.8) saturate(.9);
-            transition: filter .4s;
+            /* Respect du ratio original : l'image s'adapte à la hauteur sans être étirée */
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* L'image entière est visible, sans recadrage */
+            opacity: 0.95;
+            transition: transform 0.4s ease, opacity 0.3s;
         }
-        .slide-img-block:hover img { filter: brightness(.9) saturate(1); }
+        .slide-img-block:hover img {
+            transform: scale(1.02);
+            opacity: 1;
+        }        
+        .project-slide > div:last-child {
+            max-width: 800px;
+            margin: 0 auto;
+        }
         .slide-img-caption {
             position: absolute;
             bottom: 0; left: 0; right: 0;
@@ -2139,9 +2162,9 @@
                     <section class="project-slide">
                         <div class="slide-inner">
                             <div class="slide-img-block">
-                                    <img src="pictures/Capture d'écran 2026-04-20 000055.png" alt="Schéma de données" style="height:100%;">
-                                    <div class="slide-img-caption">Architecture du script PHP externalisé</div>
-                                </div>
+                                <img src="pictures/Capture d'écran 2026-04-20 000055.png" alt="Schéma de données">
+                                <div class="slide-img-caption">Architecture du script PHP externalisé</div>
+                            </div>
                             <div>
                                 <p class="slide-num">03 / 05</p>
                                 <h2>Ingénierie du Moteur PHP</h2>
