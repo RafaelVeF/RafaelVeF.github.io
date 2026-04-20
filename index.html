@@ -2534,6 +2534,19 @@
         if (!m) return;
         m.classList.add('show');
         document.body.style.overflow = 'hidden';
+
+        // On récupère l'ID court (ex: 'stage' au lieu de 'modal-stage')
+        const sliderId = id.replace('modal-', '');
+        
+        // Force la mise à jour après un micro-délai pour que le navigateur 
+        // puisse calculer la hauteur réelle une fois affichée
+        setTimeout(() => {
+            if (sliderState[sliderId]) {
+                updateSliderUI(sliderId);
+            } else {
+                initSlider(sliderId);
+            }
+        }, 50);
     }
     function closeModal(id) {
         const m = document.getElementById(id);
@@ -2653,7 +2666,11 @@
     }
 
     function setSlide(id, index) {
-        if (!sliderState[id]) sliderState[id] = { current: 0, total: 5 };
+        if (!sliderState[id]) {
+            const container = document.getElementById(`container-${id}`);
+            const count = container ? container.querySelectorAll('.project-slide').length : 5;
+            sliderState[id] = { current: 0, total: count };
+        }
         sliderState[id].current = index;
         updateSliderUI(id);
     }
@@ -2691,14 +2708,21 @@
         if (btnNext) btnNext.disabled = current === total - 1;
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+        ['stage', 'projet1', 'projet2', 'projet3'].forEach(id => {
+            if(document.getElementById(`container-${id}`)) {
+                initSlider(id);
+            }
+        });
+    });
+
     // AJOUT : Recalculer la hauteur si on redimensionne la fenêtre
     window.addEventListener('resize', () => {
-        ['stage'].forEach(id => {
+        ['stage','projet1'].forEach(id => {
             if(document.getElementById(`modal-${id}`).classList.contains('show')) {
                 updateSliderUI(id);
             }
         });
-        ['stage', 'projet2'].forEach(id => initSlider(id));
     });
 
     </script>
