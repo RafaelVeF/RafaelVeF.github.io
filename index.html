@@ -2266,18 +2266,147 @@
 
     <div id="modal-projet2" class="modal">
         <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('modal-projet2')">✕</button>
-            <p class="modal-tag">SAÉ BUT2 · Travail d'équipe</p>
-            <h2 class="modal-title">Application de Covoiturage</h2>
-            <div class="modal-body">
-                <p>Projet majeur réalisé dans le cadre d'une SAÉ (Situation d'Apprentissage et d'Évaluation) en BUT2 — de la conception du modèle de données jusqu'au déploiement de l'interface.</p>
-                <ul>
-                    <li><strong>Technologies :</strong> PHP, SQL (Oracle), HTML/CSS/JS</li>
-                    <li><strong>Réalisation :</strong> Développement fullstack d'une plateforme de mise en relation entre conducteurs et passagers. Travail particulier sur l'optimisation des requêtes SQL pour filtrer les trajets selon dates, points de départ, et places disponibles</li>
-                    <li><strong>Acquis :</strong> Gestion de projet en équipe, conception de schémas relationnels normalisés, sécurisation des entrées utilisateurs (XSS, injections SQL), interface responsive</li>
-                    <li><strong>Défi principal :</strong> Assurer la cohérence des données en cas de réservations simultanées (gestion des transactions)</li>
-                </ul>
-                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80" alt="Illustration Covoiturage" class="proj-modal-img">
+            
+            <div class="modal-progress">
+                <div class="modal-progress-fill" id="prog-projet2" style="width:20%"></div>
+            </div>
+
+            <div class="modal-head">
+                <button class="modal-close" onclick="closeModal('modal-projet2')">✕</button>
+                <p class="modal-tag">SAÉ BUT2 · Projet d'équipe (6 membres)</p>
+                <h2 class="modal-title">StudyGo : Application de <em>Covoiturage</em></h2>
+            </div>
+
+            <div class="modal-step-tabs" id="tabs-projet2" style="overflow-x: auto;">
+                <div class="modal-tab active" onclick="setSlide('projet2', 0)">1. Concept</div>
+                <div class="modal-tab" onclick="setSlide('projet2', 1)">2. Méthode Agile</div>
+                <div class="modal-tab" onclick="setSlide('projet2', 2)">3. Base de Données</div>
+                <div class="modal-tab" onclick="setSlide('projet2', 3)">4. Sécurité & Dev</div>
+                <div class="modal-tab" onclick="setSlide('projet2', 4)">5. Déploiement</div>
+            </div>
+
+            <div class="modal-slider" id="slider-projet2">
+                <div class="slides-container" id="container-projet2">
+
+                    <section class="project-slide active">
+                        <div class="slide-inner">
+                            <div class="slide-img-block">
+                                <img src="./pictures/Capture d'écran 2026-04-19 130718.png" alt="Interface StudyGo">
+                                <div class="slide-img-caption">Interface d'accueil de StudyGo</div>
+                            </div>
+                            <div>
+                                <p class="slide-num">01 / 05</p>
+                                <h2>Répondre à un besoin étudiant</h2>
+                                <p>L'application web "StudyGo" a été conçue pour répondre à des problématiques réelles : les difficultés des étudiants pour venir à l'IUT, le coût de l'essence, et le manque de transports en commun le soir.</p>
+                                <p>La solution proposée est un site de covoiturage exclusif aux étudiants et professeurs de l'IUT, dans le but de favoriser la mobilité durable et réduire l'empreinte carbone. L'application met en relation des conducteurs proposant un trajet et des passagers en recherche.</p>
+                                <div class="slide-tags">
+                                    <span class="slide-tag">Écologie</span>
+                                    <span class="slide-tag">Mobilité</span>
+                                    <span class="slide-tag">Covoiturage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner full">
+                            <div class="slide-img-block">
+                                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80" alt="Organisation Trello Agile">
+                                <div class="slide-img-caption">Gestion des sprints sur Trello</div>
+                            </div>
+                            <div>
+                                <p class="slide-num">02 / 05</p>
+                                <h2>Gestion de Projet & Agile</h2>
+                                <p>Réalisé en équipe de 6 étudiants, ce projet a nécessité une planification rigoureuse avec l'utilisation d'outils collaboratifs comme Trello, GitHub et des réunions régulières (Discord/Présentiel).</p>
+                                <p>Nous avons suivi un cycle de développement complet et itératif : Rédaction du Cahier des Charges (CDC) ➔ Maquettage (PC/Mobile) ➔ Développement Front-end ➔ Développement Back-end ➔ Phase de tests et revues de code.</p>
+                                <div class="slide-highlight">
+                                    <p><strong>Collaboration :</strong> Le découpage des tâches et la validation collective ont permis d'anticiper les risques de retard et d'optimiser les atouts de chacun.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner">
+                            <div class="slide-img-block">
+                                <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80" alt="Conception de base de données">
+                                <div class="slide-img-caption">Modélisation relationnelle des données</div>
+                            </div>
+                            <div>
+                                <p class="slide-num">03 / 05</p>
+                                <h2>Modélisation & Base de Données</h2>
+                                <p>La robustesse de l'application repose sur une base de données cloud hébergée sur AlwaysData, gérée via MySQL WorkBench.</p>
+                                <p>Avant d'écrire la moindre ligne de code, nous avons élaboré le dictionnaire de données, le Modèle Conceptuel de Données (MCD) et le Modèle Logique de Données (MLD).</p>
+                                <p>Cette étape était cruciale pour gérer les relations complexes entre les utilisateurs, les véhicules, les annonces de trajets, les réservations et le système d'avis et commentaires.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner full">
+                            <div class="slide-img-block">
+                                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Code PHP et Sécurité">
+                                <div class="slide-img-caption">Développement PHP et Sécurisation</div>
+                            </div>
+                            <div>
+                                <p class="slide-num">04 / 05</p>
+                                <h2>Back-End PHP & Sécurité Appliquée</h2>
+                                <p>Le traitement des données côté serveur a été réalisé en PHP natif avec un fort accent sur la sécurité des utilisateurs. L'authentification intègre un algorithme de hachage robuste (SHA-256) pour la protection des mots de passe.</p>
+                                <p>La dynamique de l'application s'appuie sur la gestion stricte des <strong>Sessions</strong> et des méthodes HTTP (GET/POST) finement paramétrées et validées. Pour contrer les failles courantes (CSRF, XSS, injections SQL), des tokens de sécurité ont été implémentés dans les formulaires critiques.</p>
+                                <div class="slide-tags">
+                                    <span class="slide-tag">PHP</span>
+                                    <span class="slide-tag">SQL</span>
+                                    <span class="slide-tag">SHA-256</span>
+                                    <span class="slide-tag">Sécurité Web</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-slide">
+                        <div class="slide-inner full">
+                            <div class="slide-img-block">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Dashboard Administrateur">
+                                <div class="slide-img-caption">Tableau de bord administrateur (Liste noire)</div>
+                            </div>
+                            <div>
+                                <p class="slide-num">05 / 05</p>
+                                <h2>Fonctionnalités avancées & Déploiement</h2>
+                                <p>Le produit final intègre un moteur de recherche de correspondances de trajets, un système de notation des conducteurs et un espace de gestion des réservations complet.</p>
+                                <p>Un "AdminBoard" a également été développé pour la modération, permettant notamment de gérer une liste noire d'utilisateurs bannis. Le développement local a été géré via <strong>Laragon</strong>, simulant l'environnement de production avant le déploiement.</p>
+                                <div class="slide-metrics">
+                                    <div class="slide-metric">
+                                        <span class="slide-metric-num">6</span>
+                                        <span class="slide-metric-label">Développeurs</span>
+                                    </div>
+                                    <div class="slide-metric">
+                                        <span class="slide-metric-num blue">100%</span>
+                                        <span class="slide-metric-label">Fullstack</span>
+                                    </div>
+                                    <div class="slide-metric">
+                                        <span class="slide-metric-num">A+</span>
+                                        <span class="slide-metric-label">Note Sécurité</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="slide-nav">
+                <button class="slide-btn" id="prev-projet2" onclick="moveSlide('projet2', -1)" disabled>← Précédent</button>
+                <div class="slide-nav-center">
+                    <div class="nav-dots" id="dots-projet2">
+                        <span class="nav-dot active" onclick="setSlide('projet2', 0)"></span>
+                        <span class="nav-dot" onclick="setSlide('projet2', 1)"></span>
+                        <span class="nav-dot" onclick="setSlide('projet2', 2)"></span>
+                        <span class="nav-dot" onclick="setSlide('projet2', 3)"></span>
+                        <span class="nav-dot" onclick="setSlide('projet2', 4)"></span>
+                    </div>
+                    <span class="slide-counter" id="counter-projet2">01 / 05</span>
+                </div>
+                <button class="slide-btn" id="next-projet2" onclick="moveSlide('projet2', 1)">Suivant →</button>
             </div>
         </div>
     </div>
@@ -2565,6 +2694,7 @@
                 updateSliderUI(id);
             }
         });
+        ['stage', 'projet2'].forEach(id => initSlider(id));
     });
 
     </script>
