@@ -766,6 +766,100 @@
         .ref-person .name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; }
         .ref-person .role { font-size: .65rem; letter-spacing: .15em; color: var(--muted); text-transform: uppercase; margin-top: .3rem; line-height: 1.6; }
 
+        #perso-banner {
+    padding: 60px 5%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.perso-container {
+    max-width: 900px;
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3.5rem;
+    position: relative;
+    /* On laisse l'overflow à visible pour que les images sortent du cadre */
+    overflow: visible; 
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.perso-content {
+    position: relative;
+    z-index: 5;
+}
+
+.perso-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.perso-text {
+    font-size: 0.9rem;
+    color: rgba(240, 237, 232, 0.7);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.perso-text strong {
+    color: var(--accent);
+    font-weight: 400;
+}
+
+/* Éléments Flottants (SVG) */
+.floating-svg {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    z-index: 6;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    transition: transform 0.4s ease;
+    pointer-events: none; /* Pour ne pas gêner la sélection du texte */
+}
+
+/* La carte Pokémon : Sort en haut à droite */
+.tcg-svg {
+    top: -40px;
+    right: -30px;
+    transform: rotate(12deg);
+}
+
+/* Le PC : Sort en bas à gauche */
+.pc-svg {
+    bottom: -40px;
+    left: -30px;
+    width: 140px;
+    transform: rotate(-8deg);
+}
+
+/* Animation au survol de la bannière */
+.perso-container:hover .tcg-svg {
+    transform: rotate(15deg) translateY(-10px) scale(1.05);
+}
+
+.perso-container:hover .pc-svg {
+    transform: rotate(-5deg) translateY(5px) scale(1.05);
+}
+
+/* Adaptabilité Mobile */
+@media (max-width: 768px) {
+    .perso-container {
+        padding: 2.5rem 1.5rem;
+    }
+    .floating-svg {
+        width: 80px; /* On réduit la taille sur mobile */
+    }
+    .tcg-svg { top: -20px; right: -10px; }
+    .pc-svg { bottom: -20px; left: -10px; width: 90px; }
+}
+
         /* ============================
            FOOTER
         ============================ */
@@ -1975,12 +2069,12 @@
 
         <section id="perso-banner" class="reveal">
             <div class="perso-container">
-                <div class="floating-svg card-svg">
+                <div class="floating-svg tcg-svg">
                     <img src="logos/tcg.svg" alt="TCG icon">
             </div>
 
             <div class="perso-content">
-            <p class="hero-eyebrow">Hors-Champ</p>
+            <p class="hero-eyebrow">Passions et Créativité</p>
             <h2 class="perso-title">Passions & <em>Créativité</em></h2>
             <p class="perso-text">
                 Loin des écrans, je suis un grand amateur de <strong>jeux de cartes</strong> qui stimulent ma réflexion stratégique. 
