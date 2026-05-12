@@ -13,7 +13,7 @@
            VARIABLES & RESET
         ============================ */
         :root {
-            --bg:       #16181d;
+            --bg:       #07080a;
             --bg-card:  rgba(14, 16, 20, 0.75);
             --bg-glass: rgba(255,255,255,0.03);
             --white:    #f0ede8;
@@ -128,7 +128,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1.4rem 5%;
-            background: rgba(22,24,29,0.75);
+            background: rgba(7,8,10,0.7);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--border);
@@ -697,7 +697,7 @@
         #projets { background: linear-gradient(to bottom, transparent, rgba(20,24,30,.3), transparent); }
         .projects-wrap { max-width: 1200px; width: 100%; }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
         .proj-card {
             background: var(--bg-card);
@@ -805,7 +805,7 @@
             position: fixed;
             inset: 0;
             z-index: 5000;
-            background: rgba(22,24,29,.92);
+            background: rgba(7,8,10,.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             align-items: center;
@@ -816,7 +816,7 @@
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
         .modal-box {
-            background: #1a1d22;
+            background: #0e1014;
             border: 1px solid var(--border);
             border-radius: 8px;
             max-width: 780px;
@@ -1511,298 +1511,11 @@
             .slide-nav { padding: .8rem 1.2rem; }
         }
 
-        /* ============================
-           READ PROGRESS BAR
-        ============================ */
-        #read-progress {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(255,255,255,0.04);
-            z-index: 9999;
-            pointer-events: none;
-        }
-        #read-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        /* ============================
-           MARQUEE TECH BAND
-        ============================ */
-        .marquee-band {
-            background: rgba(20,22,28,0.9);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 13px 0;
-            overflow: hidden;
-            position: relative;
-        }
-        .marquee-band::before,
-        .marquee-band::after {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            width: 80px;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .marquee-band::before { left: 0; background: linear-gradient(90deg, rgba(20,22,28,1), transparent); }
-        .marquee-band::after  { right: 0; background: linear-gradient(-90deg, rgba(20,22,28,1), transparent); }
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee-scroll 30s linear infinite;
-        }
-        @keyframes marquee-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 28px;
-            font-size: .62rem;
-            letter-spacing: .22em;
-            color: var(--muted);
-            text-transform: uppercase;
-            white-space: nowrap;
-            border-right: 1px solid var(--border);
-        }
-        .marquee-logo {
-            width: 20px; height: 20px;
-            border-radius: 3px;
-            background: rgba(201,169,110,0.08);
-            border: 1px solid rgba(201,169,110,0.15);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 8px;
-            color: var(--accent);
-            flex-shrink: 0;
-            font-family: var(--font-mono);
-        }
-
-        /* ============================
-           SKILLS — REVISED (bars + tags hybrid)
-        ============================ */
-        .skill-bar-group { display: flex; flex-direction: column; gap: 10px; margin-top: .2rem; }
-        .skill-bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
-        .skill-bar-name { font-size: .65rem; letter-spacing: .1em; color: rgba(240,237,232,.75); }
-        .skill-bar-pct { font-family: var(--font-mono); font-size: .58rem; color: var(--accent); opacity: .8; }
-        .skill-bar-bg { height: 2px; background: rgba(255,255,255,0.06); border-radius: 1px; overflow: hidden; }
-        .skill-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), rgba(201,169,110,.4));
-            border-radius: 1px;
-            width: 0;
-            transition: width 1.2s cubic-bezier(.2,.8,.2,1);
-        }
-        .skill-card.in-view .skill-bar-fill { width: var(--w); }
-
-        /* ============================
-           ASPIRATIONS SECTION
-        ============================ */
-        #aspirations { background: linear-gradient(to bottom, transparent, rgba(20,24,30,.4), transparent); }
-        .aspir-wrap { max-width: 1200px; width: 100%; }
-
-        .aspir-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 5rem;
-            align-items: start;
-        }
-        .aspir-intro { position: sticky; top: 120px; }
-        .aspir-intro-text {
-            font-size: .82rem;
-            color: rgba(240,237,232,.6);
-            line-height: 2;
-            margin-top: 1.5rem;
-        }
-        .aspir-intro-text strong { color: var(--white); font-weight: 400; }
-        .aspir-sector-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 1.5rem;
-            padding: 8px 14px;
-            background: rgba(201,169,110,0.06);
-            border: 1px solid rgba(201,169,110,0.15);
-            border-radius: 4px;
-            font-size: .65rem;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-        .company-logos { margin-top: 2rem; padding-top: 1.8rem; border-top: 1px solid var(--border); }
-        .company-logos-label { font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-        .company-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-        .company-chip {
-            padding: .35rem .9rem;
-            background: rgba(255,255,255,.03);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            font-size: .62rem;
-            letter-spacing: .12em;
-            color: rgba(240,237,232,.45);
-            transition: all .25s;
-            cursor: default;
-        }
-        .company-chip:hover { border-color: rgba(201,169,110,.2); color: rgba(240,237,232,.8); background: rgba(201,169,110,.05); }
-
-        .aspir-items { display: flex; flex-direction: column; }
-        .aspir-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding: 1.8rem 0;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-        }
-        .aspir-item:first-child { border-top: 1px solid var(--border); }
-        .aspir-icon-wrap {
-            width: 44px; height: 44px;
-            border-radius: 6px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            transition: border-color .3s;
-        }
-        .aspir-item:hover .aspir-icon-wrap { border-color: rgba(201,169,110,.25); }
-        .aspir-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: .4rem; }
-        .aspir-desc { font-size: .78rem; color: rgba(240,237,232,.55); line-height: 1.9; }
-        .aspir-desc strong { color: rgba(240,237,232,.8); font-weight: 400; }
-        .aspir-tag {
-            display: inline-block;
-            margin-top: .6rem;
-            padding: .2rem .7rem;
-            background: rgba(201,169,110,.06);
-            border: 1px solid rgba(201,169,110,.12);
-            border-radius: 2px;
-            font-size: .58rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-        @media (max-width: 900px) {
-            .aspir-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .aspir-intro { position: relative; top: auto; }
-        }
-
-        /* ============================
-           REFLEXION — renamed Prise de Recul, with image
-        ============================ */
-        .ref-with-img {
-            display: grid;
-            grid-template-columns: 1fr 1.8fr;
-            gap: 4rem;
-            align-items: start;
-        }
-        .ref-img-aside { position: sticky; top: 120px; }
-        .ref-img-aside img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            filter: grayscale(30%) brightness(.85);
-            transition: filter .4s;
-            display: block;
-        }
-        .ref-img-aside img:hover { filter: grayscale(0%) brightness(1); }
-        .ref-img-caption {
-            margin-top: .8rem;
-            font-size: .6rem;
-            letter-spacing: .15em;
-            color: var(--muted);
-            text-transform: uppercase;
-        }
-        @media (max-width: 900px) {
-            .ref-with-img { grid-template-columns: 1fr; gap: 2rem; }
-            .ref-img-aside { position: relative; top: auto; }
-        }
-
-        /* ============================
-           NAV AVAIL PILL
-        ============================ */
-        .nav-avail {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(74,222,128,0.08);
-            border: 1px solid rgba(74,222,128,0.2);
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: .6rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: #4ade80;
-        }
-        .nav-avail-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: #4ade80;
-            animation: pulse-green 2s ease-in-out infinite;
-        }
-        @keyframes pulse-green {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,.5); }
-            50%       { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
-        }
-        @media (max-width: 900px) { .nav-avail { display: none; } }
-
-        /* Hero avail banner */
-        .hero-avail-banner {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(74,222,128,0.05);
-            border: 1px solid rgba(74,222,128,0.16);
-            border-radius: 4px;
-            padding: 7px 14px;
-            margin-bottom: 1.2rem;
-            font-size: .62rem;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: #4ade80;
-        }
-        .hero-avail-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: #4ade80;
-            flex-shrink: 0;
-            animation: pulse-green 2s ease-in-out infinite;
-        }
-        .hero-avail-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-        .avail-chip {
-            font-size: .55rem;
-            letter-spacing: .1em;
-            color: rgba(74,222,128,.6);
-            border: 1px solid rgba(74,222,128,.13);
-            padding: 2px 8px;
-            border-radius: 20px;
-        }
-
-        /* Photo green dot */
-        .photo-avail-dot {
-            position: absolute;
-            bottom: 18px;
-            right: calc(50% - 115px + 8px);
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: #4ade80;
-            border: 2.5px solid var(--bg);
-            z-index: 2;
-            animation: pulse-green 2s ease-in-out infinite;
-        }
+        
 
     </style>
 </head>
 <body>
-
-    <!-- Read Progress Bar -->
-    <div id="read-progress"><div id="read-progress-fill"></div></div>
 
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursor-ring"></div>
@@ -1815,10 +1528,6 @@
 
     <header class="navbar" id="navbar">
         <a href="#accueil" class="logo">Rafael<em>.</em></a>
-        <div class="nav-avail">
-            <div class="nav-avail-dot"></div>
-            Disponible · Alternance 2026
-        </div>
         <div class="nav-toggle" id="nav-toggle" aria-label="Menu" role="button" tabindex="0">
             <span></span><span></span><span></span>
         </div>
@@ -1829,7 +1538,6 @@
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#experience">Parcours</a></li>
                 <li><a href="#projets">Projets</a></li>
-                <li><a href="#aspirations">Aspirations</a></li>
                 <li><a href="#reflexion">Recul</a></li>
             </ul>
         </nav>
@@ -1842,8 +1550,7 @@
             
             <div class="hero">
                 <div class="hero-img-wrap reveal">
-                    <img src="./pictures/Capture d'écran 2026-04-20 170840.png" alt="Rafael Veneque-Fougeray" class="profile-photo">
-                    <div class="photo-avail-dot"></div>
+                    <img src="./assets/profil_photo.jpg" alt="Rafael Veneque-Fougeray" class="profile-photo">
                 </div>
                 <div class="hero-content">
                     <p class="hero-eyebrow reveal reveal-delay-1">Étudiant BUT Informatique · Amiens</p>
@@ -1854,15 +1561,6 @@
                     <p class="hero-role reveal reveal-delay-3">
                         Développeur web et applicatif 
                     </p>
-                    <div class="hero-avail-banner reveal reveal-delay-3">
-                        <div class="hero-avail-dot"></div>
-                        Disponible — en recherche d'alternance
-                    </div>
-                    <div class="hero-avail-chips reveal reveal-delay-3">
-                        <span class="avail-chip">Septembre 2026</span>
-                        <span class="avail-chip">Hauts-de-France</span>
-                        <span class="avail-chip">Mobile</span>
-                    </div>
                     <blockquote class="hero-quote reveal reveal-delay-3">
                         "Chaque problème a une structure. Le code me permet de la résoudre."
                     </blockquote>
@@ -1880,39 +1578,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- ======= MARQUEE TECH BAND ======= -->
-        <div class="marquee-band">
-            <div class="marquee-track">
-                <span class="marquee-item"><div class="marquee-logo">PHP</div>PHP</span>
-                <span class="marquee-item"><div class="marquee-logo">JV</div>Java</span>
-                <span class="marquee-item"><div class="marquee-logo">SQL</div>Oracle SQL</span>
-                <span class="marquee-item"><div class="marquee-logo">XML</div>XML / XSD</span>
-                <span class="marquee-item"><div class="marquee-logo">PY</div>Python</span>
-                <span class="marquee-item"><div class="marquee-logo">DK</div>Docker</span>
-                <span class="marquee-item"><div class="marquee-logo">GH</div>GitHub</span>
-                <span class="marquee-item"><div class="marquee-logo">JS</div>JavaScript</span>
-                <span class="marquee-item"><div class="marquee-logo">C++</div>C / C++</span>
-                <span class="marquee-item"><div class="marquee-logo">LX</div>Linux</span>
-                <span class="marquee-item"><div class="marquee-logo">CI</div>Cisco</span>
-                <span class="marquee-item"><div class="marquee-logo">AI</div>Ollama LLM</span>
-                <span class="marquee-item"><div class="marquee-logo">LD</div>Linked Data</span>
-                <!-- duplicate for seamless loop -->
-                <span class="marquee-item"><div class="marquee-logo">PHP</div>PHP</span>
-                <span class="marquee-item"><div class="marquee-logo">JV</div>Java</span>
-                <span class="marquee-item"><div class="marquee-logo">SQL</div>Oracle SQL</span>
-                <span class="marquee-item"><div class="marquee-logo">XML</div>XML / XSD</span>
-                <span class="marquee-item"><div class="marquee-logo">PY</div>Python</span>
-                <span class="marquee-item"><div class="marquee-logo">DK</div>Docker</span>
-                <span class="marquee-item"><div class="marquee-logo">GH</div>GitHub</span>
-                <span class="marquee-item"><div class="marquee-logo">JS</div>JavaScript</span>
-                <span class="marquee-item"><div class="marquee-logo">C++</div>C / C++</span>
-                <span class="marquee-item"><div class="marquee-logo">LX</div>Linux</span>
-                <span class="marquee-item"><div class="marquee-logo">CI</div>Cisco</span>
-                <span class="marquee-item"><div class="marquee-logo">AI</div>Ollama LLM</span>
-                <span class="marquee-item"><div class="marquee-logo">LD</div>Linked Data</span>
-            </div>
-        </div>
 
         <section id="a-propos">
             <div class="about-wrap">
@@ -1969,7 +1634,7 @@
                             <h2 class="section-title">Compé<em>tences</em></h2>
                         </div>
                         <p style="color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; max-width: 400px; line-height: 1.6;">
-                            Niveau de maîtrise — survolez les tags pour le détail.
+                            Survolez chaque compétence pour découvrir ma maîtrise et les contextes d'utilisation.
                         </p>
                     </div>
                     <div class="skills-img-wrap">
@@ -1978,70 +1643,213 @@
                 </div>
 
                 <div class="skills-container">
-                    <div class="skill-card reveal" data-inview>
+                    <!-- 1. Langages & Développement -->
+                    <div class="skill-card reveal">
                         <span class="skill-card-icon">⌨</span>
                         <h3>Langages & Développement</h3>
-                        <div class="skill-bar-group">
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">PHP</span><span class="skill-bar-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:85%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:75%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">C / C++</span><span class="skill-bar-pct">60%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:60%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">50%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:50%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">JavaScript</span><span class="skill-bar-pct">55%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:55%"></div></div></div>
+                        <div class="tag-list">
+                            <div class="tag" style="--percent: 60%;">
+                                <span>C / C++</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Logique bas niveau, algorithmes complexes et moteurs optimisés.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 75%;">
+                                <span>Java</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Programmation orientée objet robuste, architecture MVC.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 50%;">
+                                <span>Python</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Scripts asynchrones et intégration de modèles d'IA locaux.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 85%;">
+                                <span>PHP</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Back-end, requêtes PDO complexes et génération XML dynamique.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 55%;">
+                                <span>JavaScript</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Dynamisation DOM, interactivité front-end et appels asynchrones.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-card reveal reveal-delay-1" data-inview>
+                    <!-- 2. Architecture, BDD & Systèmes -->
+                    <div class="skill-card reveal reveal-delay-1">
                         <span class="skill-card-icon">⬡</span>
                         <h3>Architecture, BDD & Systèmes</h3>
-                        <div class="skill-bar-group">
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">SQL / PL-SQL</span><span class="skill-bar-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:85%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Oracle Database</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:80%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">XML / XSD / JSON</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:90%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Docker</span><span class="skill-bar-pct">70%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:70%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Réseaux Cisco</span><span class="skill-bar-pct">55%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:55%"></div></div></div>
+                        <div class="tag-list">
+                            <div class="tag" style="--percent: 85%;">
+                                <span>SQL / PL-SQL</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Requêtes complexes, procédures stockées et triggers sous Oracle.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 80%;">
+                                <span>Oracle Database</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Administration, gestion des transactions et architecture SGBD.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 70%;">
+                                <span>Docker</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Déploiement de conteneurs, images isolées pour l'environnement dev.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 55%;">
+                                <span>Réseaux Cisco</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Configuration matérielle, routage, VLANs et topologie réseau.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 90%;">
+                                <span>XML / XSD / JSON</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Validation de schémas stricts et arbres de données hiérarchiques.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-card reveal reveal-delay-2" data-inview>
+                    <!-- 3. Outils & Environnements de Travail -->
+                    <div class="skill-card reveal reveal-delay-2">
                         <span class="skill-card-icon">◧</span>
-                        <h3>Outils & Environnements</h3>
-                        <div class="skill-bar-group">
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">GitHub</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:75%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">VS Code</span><span class="skill-bar-pct">70%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:70%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Linux / Windows</span><span class="skill-bar-pct">65%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:65%"></div></div></div>
+                        <h3>Outils & Environnements de Travail</h3>
+                        <div class="tag-list">
+                            <div class="tag" style="--percent: 75%;">
+                                <span>GitHub</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Workflows collaboratifs : branches, pull requests, revue de code et gestion de versions.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 70%;">
+                                <span>VS Code</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Environnement de développement polyvalent, extensions et productivité optimisée.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 65%;">
+                                <span>Linux / Windows</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Administration basique, scripts, gestion des environnements et outils système.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-card reveal reveal-delay-2" data-inview>
+                    <!-- 4. Méthodologies & Pratiques Professionnelles -->
+                    <div class="skill-card reveal reveal-delay-2">
                         <span class="skill-card-icon">◇</span>
-                        <h3>Méthodologies & Pratiques</h3>
-                        <div class="skill-bar-group">
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Algorithmique</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:90%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Architecture MVC</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:80%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Débogage & Refactorisation</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:75%"></div></div></div>
+                        <h3>Méthodologies & Pratiques Professionnelles</h3>
+                        <div class="tag-list">
+                            <div class="tag" style="--percent: 90%;">
+                                <span>Algorithmique</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Étude et optimisation de la complexité du code.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 80%;">
+                                <span>MVC</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Architecture claire, séparation des responsabilités et maintenance facilitée.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 75%;">
+                                <span>Débogage & Refactorisation</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Analyse, correction et amélioration continue du code existant.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- 5. Savoir-Faire BUT2 -->
                     <div class="skill-card reveal reveal-delay-2">
                         <span class="skill-card-icon">◈</span>
                         <h3>Savoir-Faire BUT2</h3>
                         <div class="tag-list">
-                            <div class="tag" style="--percent: 65%;"><span>ERP</span><div class="skill-popover"><span class="skill-desc">Gestion de processus d'entreprise avec Oracle Database.</span><div class="progress-bar"><div class="progress-fill"></div></div></div></div>
-                            <div class="tag" style="--percent: 90%;"><span>Linked Data</span><div class="skill-popover"><span class="skill-desc">Interopérabilité sémantique via Wikidata et Getty AAT.</span><div class="progress-bar"><div class="progress-fill"></div></div></div></div>
-                            <div class="tag" style="--percent: 70%;"><span>Anglais pro.</span><div class="skill-popover"><span class="skill-desc">Lecture technique fluide et expression métier maîtrisée.</span><div class="progress-bar"><div class="progress-fill"></div></div></div></div>
-                            <div class="tag" style="--percent: 85%;"><span>XMLWriter</span><div class="skill-popover"><span class="skill-desc">Génération XML en flux continu, gestion XSD v1.1.</span><div class="progress-bar"><div class="progress-fill"></div></div></div></div>
-                            <div class="tag" style="--percent: 75%;"><span>LIDO-MC</span><div class="skill-popover"><span class="skill-desc">Standard d'interopérabilité patrimoniale culturelle.</span><div class="progress-bar"><div class="progress-fill"></div></div></div></div>
+                            <div class="tag" style="--percent: 65%;">
+                                <span>ERP</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Gestion de processus d'entreprise avec Oracle Database.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 90%;">
+                                <span>Linked Data</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Interopérabilité sémantique via Wikidata et Getty AAT.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 70%;">
+                                <span>Anglais professionnel</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Lecture technique fluide et expression métier maîtrisée.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
-                    <div class="skill-card reveal reveal-delay-2" data-inview>
+                    <!-- 6. Compétences professionnelles & relationnelles -->
+                    <div class="skill-card reveal reveal-delay-2">
                         <span class="skill-card-icon">⌬</span>
-                        <h3>Compétences relationnelles</h3>
-                        <div class="skill-bar-group">
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Autonomie</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:90%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Fiabilité & constance</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:90%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Flexibilité</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:80%"></div></div></div>
-                            <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Travail en équipe</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:75%"></div></div></div>
+                        <h3>Compétences professionnelles & relationnelles</h3>
+                        <div class="tag-list">
+                            <div class="tag" style="--percent: 75%;">
+                                <span>Travail en équipe</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Capacité à collaborer, partager l’information et maintenir une dynamique d’équipe productive.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 80%;">
+                                <span>Flexibilité</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Adaptation rapide aux changements, polyvalence et réactivité face aux imprévus.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 90%;">
+                                <span>Autonomie</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Initiative, efficacité et gestion des tâches sans supervision constante.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="tag" style="--percent: 90%;">
+                                <span>Fiabilité & constance</span>
+                                <div class="skill-popover">
+                                    <span class="skill-desc">Respect des délais, qualité stable et engagement durable.</span>
+                                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -2049,7 +1857,7 @@
             </div>
         </section>
 
-                <section id="experience">
+        <section id="experience">
             <div class="exp-wrap">
                 <div class="exp-aside reveal">
                     <img src="https://iut-amiens.u-picardie.fr/sites/default/files/media/2025-07/visu-iut-amiens-930plan-de-travail-1-100.jpg" alt="IUT Amiens">
@@ -2169,104 +1977,32 @@
             </div>
         </section>
 
-        <!-- ======= ASPIRATIONS ======= -->
-        <section id="aspirations">
-            <div class="aspir-wrap">
+        <section id="reflexion">
+            <div class="ref-wrap">
                 <div class="section-header reveal">
                     <span class="section-num">05</span>
-                    <h2 class="section-title">Aspira<em>tions</em></h2>
+                    <h2 class="section-title">Analyse de mes <em>Acquis</em></h2>
                 </div>
-                <div class="aspir-grid">
-                    <div class="aspir-intro reveal">
-                        <p class="aspir-intro-text">
-                            Le code est un moyen, pas une fin. Ce qui me motive profondément, c'est <strong>l'impact concret</strong> de ce que je construis — ne jamais programmer deux fois la même chose, mais explorer sans cesse de nouveaux territoires techniques. Je veux un métier qui me pousse à progresser à chaque mission.
-                        </p>
-                        <div class="aspir-sector-badge">✦ &nbsp;Défense & Aéronautique</div>
-                        <div class="company-logos">
-                            <p class="company-logos-label">Entreprises qui m'inspirent</p>
-                            <div class="company-chips">
-                                <span class="company-chip">Thales</span>
-                                <span class="company-chip">Airbus</span>
-                                <span class="company-chip">Safran</span>
-                                <span class="company-chip">Dassault Aviation</span>
-                                <span class="company-chip">Naval Group</span>
-                                <span class="company-chip">MBDA</span>
-                                <span class="company-chip">CS Group</span>
-                            </div>
+                <div class="ref-content reveal">
+                    <p><strong>Analyse de mes acquis :</strong> Tout au long de mon BUT2, j'ai développé une grande capacité d'adaptation. Passer d'une logique relationnelle SQL à une arborescence XML stricte durant mon stage a considérablement renforcé ma rigueur. J'ai appris à concevoir des algorithmes adéquats — notamment pour la désérialisation de données complexes — et à comprendre l'impact d'une architecture bien pensée sur la pérennité d'un projet.</p>
+                    <p>Cette expérience m'a également appris à dialoguer avec des non-techniciens (chercheurs, conservateurs), à traduire des besoins métier en spécifications techniques, et à documenter rigoureusement mon travail pour assurer la transmission.</p>
+                    <div class="ref-contact">
+                        <div class="ref-person">
+                            <p class="name">M. David Durand</p>
+                            <p class="role">Enseignant-chercheur · IUT d'Amiens (UPJV)<br>Président / Trésorier de la PHN</p>
                         </div>
-                    </div>
-                    <div class="aspir-items reveal reveal-delay-1">
-                        <div class="aspir-item">
-                            <div class="aspir-icon-wrap">🎯</div>
-                            <div>
-                                <h3 class="aspir-title">Développeur Système</h3>
-                                <p class="aspir-desc">Mon objectif est d'évoluer vers le <strong>développement de systèmes bas niveau</strong> — un domaine où la rigueur technique est non négociable et où chaque ligne de code a un poids réel. Systèmes embarqués, temps réel, contraintes mémoire : exactement les défis qui me font avancer.</p>
-                                <span class="aspir-tag">C / C++ · Temps réel · RTOS</span>
-                            </div>
-                        </div>
-                        <div class="aspir-item">
-                            <div class="aspir-icon-wrap">✈</div>
-                            <div>
-                                <h3 class="aspir-title">Aéronautique & Défense</h3>
-                                <p class="aspir-desc">Ces secteurs m'attirent pour leur <strong>exigence d'excellence absolue</strong> et leurs enjeux critiques. Contribuer à des systèmes embarqués qui opèrent dans des environnements extrêmes — avionique, navigation, communications sécurisées — est une perspective qui me galvanise.</p>
-                                <span class="aspir-tag">DO-178C · MISRA · Systèmes critiques</span>
-                            </div>
-                        </div>
-                        <div class="aspir-item">
-                            <div class="aspir-icon-wrap">🏢</div>
-                            <div>
-                                <h3 class="aspir-title">Grands groupes & innovation</h3>
-                                <p class="aspir-desc">Je m'épanouis dans les environnements où les processus sont <strong>robustes et l'innovation un moteur réel</strong>. Des acteurs comme Thales ou Airbus incarnent cet équilibre parfait entre maturité industrielle et R&D de pointe — là où le travail a de la durée et de la profondeur.</p>
-                                <span class="aspir-tag">R&D · Projets longs · Expertise métier</span>
-                            </div>
-                        </div>
-                        <div class="aspir-item">
-                            <div class="aspir-icon-wrap">⚡</div>
-                            <div>
-                                <h3 class="aspir-title">Variété & impact concret</h3>
-                                <p class="aspir-desc">Je recherche un poste où <strong>aucune journée ne ressemble à la précédente</strong>. Ne jamais programmer deux fois la même chose, alterner entre conception bas niveau, intégration système et collaboration pluridisciplinaire : c'est cette richesse des missions qui nourrit ma curiosité et mon efficacité sur le long terme.</p>
-                                <span class="aspir-tag">Polyvalence · Impact direct · Curiosité</span>
-                            </div>
+                        <div style="flex:1; min-width: 200px;">
+                            <p style="font-size:.75rem; color: rgba(240,237,232,.5); line-height: 1.8;">Personne référente pouvant attester de mon investissement, de mon autonomie et de ma rigueur technique lors de mes projets universitaires et professionnels.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ======= PRISE DE RECUL ======= -->
-        <section id="reflexion">
-            <div class="ref-wrap" style="max-width:1100px;">
-                <div class="section-header reveal">
-                    <span class="section-num">06</span>
-                    <h2 class="section-title">Prise de <em>Recul</em></h2>
-                </div>
-                <div class="ref-with-img reveal">
-                    <div class="ref-img-aside">
-                        <img src="https://iut-amiens.u-picardie.fr/sites/default/files/media/2025-07/visu-iut-amiens-930plan-de-travail-1-100.jpg" alt="IUT Amiens">
-                        <p class="ref-img-caption">IUT Amiens — UPJV · 2024–2026</p>
-                    </div>
-                    <div class="ref-content" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 3.5rem;">
-                        <p><strong>Analyse de mes acquis :</strong> Tout au long de mon BUT2, j'ai développé une grande capacité d'adaptation. Passer d'une logique relationnelle SQL à une arborescence XML stricte durant mon stage a considérablement renforcé ma rigueur. J'ai appris à concevoir des algorithmes adéquats — notamment pour la désérialisation de données complexes — et à comprendre l'impact d'une architecture bien pensée sur la pérennité d'un projet.</p>
-                        <p>Cette expérience m'a également appris à dialoguer avec des non-techniciens (chercheurs, conservateurs), à traduire des besoins métier en spécifications techniques, et à documenter rigoureusement mon travail pour assurer la transmission.</p>
-                        <p><strong>Ce que le programme m'a apporté :</strong> Le BUT Informatique m'a offert une vision à 360° du développement logiciel — de l'algorithmique pure aux bases de données d'entreprise, en passant par les réseaux et la gestion de projet agile. Cette pluridisciplinarité est précisément ce qui me permet aujourd'hui d'envisager sereinement des domaines aussi exigeants que l'embarqué ou le système.</p>
-                        <div class="ref-contact">
-                            <div class="ref-person">
-                                <p class="name">M. David Durand</p>
-                                <p class="role">Enseignant-chercheur · IUT d'Amiens (UPJV)<br>Président / Trésorier de la PHN</p>
-                            </div>
-                            <div style="flex:1; min-width: 200px;">
-                                <p style="font-size:.75rem; color: rgba(240,237,232,.5); line-height: 1.8;">Personne référente pouvant attester de mon investissement, de mon autonomie et de ma rigueur technique lors de mes projets universitaires et professionnels.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-                <section id="contact" style="background: linear-gradient(to top, rgba(14,16,20,0.9), transparent);">
+        <section id="contact" style="background: linear-gradient(to top, rgba(14,16,20,0.9), transparent);">
             <div class="contact-wrap">
                 <div class="section-header reveal">
-                    <span class="section-num">07</span>
+                    <span class="section-num">06</span>
                     <h2 class="section-title">Me <em>Contacter</em></h2>
                 </div>
 
@@ -2778,33 +2514,6 @@
     document.querySelectorAll('.nav-links a').forEach(a => {
         a.addEventListener('click', () => navLinks.classList.remove('open'));
     });
-
-    // ============================
-    // READ PROGRESS BAR
-    // ============================
-    const progressFill = document.getElementById('read-progress-fill');
-    if (progressFill) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            progressFill.style.width = pct + '%';
-        });
-    }
-
-    // ============================
-    // SKILL BARS ANIMATION
-    // ============================
-    const skillCards = document.querySelectorAll('.skill-card[data-inview]');
-    const skillObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                skillObs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-    skillCards.forEach(card => skillObs.observe(card));
 
     // ============================
     // REVEAL ON SCROLL
