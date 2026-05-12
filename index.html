@@ -1541,6 +1541,7 @@
             overflow: hidden;
             position: relative;
         }
+
         .marquee-band::before,
         .marquee-band::after {
             content: '';
@@ -1550,17 +1551,21 @@
             z-index: 2;
             pointer-events: none;
         }
+
         .marquee-band::before { left: 0; background: linear-gradient(90deg, rgba(20,22,28,1), transparent); }
         .marquee-band::after  { right: 0; background: linear-gradient(-90deg, rgba(20,22,28,1), transparent); }
+
         .marquee-track {
             display: flex;
             width: max-content;
             animation: marquee-scroll 30s linear infinite;
         }
+
         @keyframes marquee-scroll {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+
         .marquee-item {
             display: inline-flex;
             align-items: center;
@@ -1573,16 +1578,19 @@
             white-space: nowrap;
             border-right: 1px solid var(--border);
         }
+
+        /* NOUVEAU STYLE POUR LES LOGOS IMAGES */
         .marquee-logo {
-            width: 20px; height: 20px;
-            border-radius: 3px;
-            background: rgba(201,169,110,0.08);
-            border: 1px solid rgba(201,169,110,0.15);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 8px;
-            color: var(--accent);
+            width: 20px; 
+            height: 20px;
+            object-fit: contain; /* Empêche l'image de s'étirer ou de se déformer */
             flex-shrink: 0;
-            font-family: var(--font-mono);
+            
+            /* ASTUCE MAGIQUE : Transforme n'importe quel logo en BLANC PUR */
+            filter: brightness(0) invert(1);
+            
+            /* Optionnel : Si tu veux que le blanc soit un peu plus doux/transparent */
+            opacity: 0.8; 
         }
 
         /* ============================
@@ -1815,10 +1823,12 @@
 
     <header class="navbar" id="navbar">
         <a href="#accueil" class="logo">Rafael<em>.</em></a>
+        <!--
         <div class="nav-avail">
             <div class="nav-avail-dot"></div>
             Disponible · Alternance 2026
         </div>
+        -->
         <div class="nav-toggle" id="nav-toggle" aria-label="Menu" role="button" tabindex="0">
             <span></span><span></span><span></span>
         </div>
@@ -1843,7 +1853,7 @@
             <div class="hero">
                 <div class="hero-img-wrap reveal">
                     <img src="./assets/profil_photo.jpg" alt="Rafael Veneque-Fougeray" class="profile-photo">
-                    <div class="photo-avail-dot"></div>
+                    <!-- <div class="photo-avail-dot"></div> -->
                 </div>
                 <div class="hero-content">
                     <p class="hero-eyebrow reveal reveal-delay-1">Étudiant BUT Informatique · Amiens</p>
@@ -1864,7 +1874,7 @@
                         <span class="avail-chip">Mobile</span>
                     </div>
                     <blockquote class="hero-quote reveal reveal-delay-3">
-                        "Chaque problème a une structure. Le code me permet de la résoudre."
+                        "Le plus grand secret de la réussite, c’est de se fixer un but et de ne le perdre jamais de vue. "
                     </blockquote>
                     <div class="hero-cta reveal reveal-delay-4">
                         <a href="#projets" class="btn btn-primary">Voir mes projets</a>
@@ -1884,33 +1894,39 @@
         <!-- ======= MARQUEE TECH BAND ======= -->
         <div class="marquee-band">
             <div class="marquee-track">
-                <span class="marquee-item"><div class="marquee-logo">PHP</div>PHP</span>
-                <span class="marquee-item"><div class="marquee-logo">JV</div>Java</span>
-                <span class="marquee-item"><div class="marquee-logo">SQL</div>Oracle SQL</span>
-                <span class="marquee-item"><div class="marquee-logo">XML</div>XML / XSD</span>
-                <span class="marquee-item"><div class="marquee-logo">PY</div>Python</span>
-                <span class="marquee-item"><div class="marquee-logo">DK</div>Docker</span>
-                <span class="marquee-item"><div class="marquee-logo">GH</div>GitHub</span>
-                <span class="marquee-item"><div class="marquee-logo">JS</div>JavaScript</span>
-                <span class="marquee-item"><div class="marquee-logo">C++</div>C / C++</span>
-                <span class="marquee-item"><div class="marquee-logo">LX</div>Linux</span>
-                <span class="marquee-item"><div class="marquee-logo">CI</div>Cisco</span>
-                <span class="marquee-item"><div class="marquee-logo">AI</div>Ollama LLM</span>
-                <span class="marquee-item"><div class="marquee-logo">LD</div>Linked Data</span>
-                <!-- duplicate for seamless loop -->
-                <span class="marquee-item"><div class="marquee-logo">PHP</div>PHP</span>
-                <span class="marquee-item"><div class="marquee-logo">JV</div>Java</span>
-                <span class="marquee-item"><div class="marquee-logo">SQL</div>Oracle SQL</span>
-                <span class="marquee-item"><div class="marquee-logo">XML</div>XML / XSD</span>
-                <span class="marquee-item"><div class="marquee-logo">PY</div>Python</span>
-                <span class="marquee-item"><div class="marquee-logo">DK</div>Docker</span>
-                <span class="marquee-item"><div class="marquee-logo">GH</div>GitHub</span>
-                <span class="marquee-item"><div class="marquee-logo">JS</div>JavaScript</span>
-                <span class="marquee-item"><div class="marquee-logo">C++</div>C / C++</span>
-                <span class="marquee-item"><div class="marquee-logo">LX</div>Linux</span>
-                <span class="marquee-item"><div class="marquee-logo">CI</div>Cisco</span>
-                <span class="marquee-item"><div class="marquee-logo">AI</div>Ollama LLM</span>
-                <span class="marquee-item"><div class="marquee-logo">LD</div>Linked Data</span>
+                <!-- Première série -->
+                <span class="marquee-item"><img src="logos/php.svg" class="marquee-logo" alt="PHP">PHP</span>
+                <span class="marquee-item"><img src="logos/javascript.svg" class="marquee-logo" alt="JavaScript">JavaScript</span>
+                <span class="marquee-item"><img src="logos/mysql.svg" class="marquee-logo" alt="ySQL">MySQL</span>
+                <span class="marquee-item"><img src="logos/xml.svg" class="marquee-logo" alt="XML">XML</span>
+                <span class="marquee-item"><img src="logos/python.svg" class="marquee-logo" alt="Python">Python</span>
+                <span class="marquee-item"><img src="logos/docker.svg" class="marquee-logo" alt="Docker">Docker</span>
+                <span class="marquee-item"><img src="logos/github.svg" class="marquee-logo" alt="GitHub">GitHub</span>
+                <span class="marquee-item"><img src="logos/c.svg" class="marquee-logo" alt="C">C</span>
+                <span class="marquee-item"><img src="logos/cplusplus.svg" class="marquee-logo" alt="C++">C++</span>
+                <span class="marquee-item"><img src="logos/linux.svg" class="marquee-logo" alt="Linux">Linux</span>
+                <span class="marquee-item"><img src="logos/cisco.svg" class="marquee-logo" alt="Cisco">Cisco</span>
+                <span class="marquee-item"><img src="logos/ollama.svg" class="marquee-logo" alt="Ollama">Ollama LLM</span>
+                <span class="marquee-item"><img src="logos/trello.svg" class="marquee-logo" alt="Trello">Trello</span>
+                <span class="marquee-item"><img src="logos/intellijidea.svg" class="marquee-logo" alt="IntellIjidea">IntellIjidea</span>
+                <span class="marquee-item"><img src="logos/virtualbox.svg" class="marquee-logo" alt="virtualbox">virtualbox</span>
+                
+                <!-- Duplication pour la boucle infinie (identique) -->
+                <span class="marquee-item"><img src="logos/php.svg" class="marquee-logo" alt="PHP">PHP</span>
+                <span class="marquee-item"><img src="logos/javascript.svg" class="marquee-logo" alt="JavaScript">JavaScript</span>
+                <span class="marquee-item"><img src="logos/mysql.svg" class="marquee-logo" alt="ySQL">MySQL</span>
+                <span class="marquee-item"><img src="logos/xml.svg" class="marquee-logo" alt="XML">XML</span>
+                <span class="marquee-item"><img src="logos/python.svg" class="marquee-logo" alt="Python">Python</span>
+                <span class="marquee-item"><img src="logos/docker.svg" class="marquee-logo" alt="Docker">Docker</span>
+                <span class="marquee-item"><img src="logos/github.svg" class="marquee-logo" alt="GitHub">GitHub</span>
+                <span class="marquee-item"><img src="logos/c.svg" class="marquee-logo" alt="C">C</span>
+                <span class="marquee-item"><img src="logos/cplusplus.svg" class="marquee-logo" alt="C++">C++</span>
+                <span class="marquee-item"><img src="logos/linux.svg" class="marquee-logo" alt="Linux">Linux</span>
+                <span class="marquee-item"><img src="logos/cisco.svg" class="marquee-logo" alt="Cisco">Cisco</span>
+                <span class="marquee-item"><img src="logos/ollama.svg" class="marquee-logo" alt="Ollama">Ollama LLM</span>
+                <span class="marquee-item"><img src="logos/trello.svg" class="marquee-logo" alt="Trello">Trello</span>
+                <span class="marquee-item"><img src="logos/intellijidea.svg" class="marquee-logo" alt="IntellIjidea">IntellIjidea</span>
+                <span class="marquee-item"><img src="logos/virtualbox.svg" class="marquee-logo" alt="virtualbox">virtualbox</span>
             </div>
         </div>
 
@@ -1953,12 +1969,31 @@
                     <div class="highlight-block reveal reveal-delay-3">
                         Mes axes d'amélioration ? Mon appétence pour les nouvelles technologies. En effet, je dois parfois me freiner pour ne pas intégrer des fonctionnalités non demandées, tant j'aime explorer les limites d'un système.
                     </div>
-                    <div class="reveal reveal-delay-4">
-                        <p><strong>Côté perso :</strong> Loin des écrans, je suis un grand amateur de jeux de cartes qui stimulent ma réflexion stratégique. J'ai également une âme créative qui s'exprime à travers le dessin, et bien sûr, une grande partie de mon temps libre est consacrée à des projets de code personnels — notamment le développement d'IA locales avec Ollama.</p>
-                    </div>
                 </div>
             </div>
         </section>
+
+        <section id="perso-banner" class="reveal">
+            <div class="perso-container">
+                <div class="floating-svg card-svg">
+                    <img src="logos/tcg.svg" alt="TCG icon">
+            </div>
+
+            <div class="perso-content">
+            <p class="hero-eyebrow">Hors-Champ</p>
+            <h2 class="perso-title">Passions & <em>Créativité</em></h2>
+            <p class="perso-text">
+                Loin des écrans, je suis un grand amateur de <strong>jeux de cartes</strong> qui stimulent ma réflexion stratégique. 
+                J'ai également une <strong>âme créative</strong> qui s'exprime à travers le dessin, et bien sûr, une grande partie de mon 
+                temps libre est consacrée à des projets personnels — notamment le développement d'IA locales avec <strong>Ollama</strong>.
+            </p>
+            </div>
+
+            <div class="floating-svg pc-svg">
+                <img src="logos/pc.svg" alt="PC Icon">
+            </div>
+        </div>
+    </section>
 
         <section id="competences">
             <div class="skills-wrap">
@@ -2132,7 +2167,7 @@
                             <span class="proj-tag">JS</span>
                         </div>
                         <div class="proj-img-wrapper">
-                            <img src="./pictures/lido_mc.jpg" alt="Aperçu du projet">
+                            <img src="./pictures/" alt="Aperçu du projet">
                         </div>
                     </div>
 
