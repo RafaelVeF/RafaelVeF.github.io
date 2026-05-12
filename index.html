@@ -814,38 +814,45 @@
 }
 
 /* Éléments Flottants (SVG) */
+/* Éléments Flottants (SVG) */
 .floating-svg {
     position: absolute;
-    width: 120px;
-    height: auto;
     z-index: 6;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
     transition: transform 0.4s ease;
     pointer-events: none; /* Pour ne pas gêner la sélection du texte */
 }
 
-/* La carte Pokémon : Sort en haut à droite */
-.tcg-svg {
-    top: -40px;
-    right: -30px;
-    transform: rotate(12deg);
+/* LA CORRECTION CRUCIALE : On force l'image à rester dans sa boîte */
+.floating-svg img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-/* Le PC : Sort en bas à gauche */
+/* La carte Pokémon : Taille ajustée et positionnée sur le coin */
+.tcg-svg {
+    width: 80px; /* Taille beaucoup plus raisonnable */
+    top: -30px;
+    right: -25px;
+    transform: rotate(15deg);
+}
+
+/* Le PC : Taille ajustée et positionné sur le coin */
 .pc-svg {
-    bottom: -40px;
-    left: -30px;
-    width: 140px;
+    width: 95px; /* Un peu plus grand que la carte, mais contenu */
+    bottom: -30px;
+    left: -25px;
     transform: rotate(-8deg);
 }
 
 /* Animation au survol de la bannière */
 .perso-container:hover .tcg-svg {
-    transform: rotate(15deg) translateY(-10px) scale(1.05);
+    transform: rotate(20deg) translateY(-8px) scale(1.05);
 }
 
 .perso-container:hover .pc-svg {
-    transform: rotate(-5deg) translateY(5px) scale(1.05);
+    transform: rotate(-4deg) translateY(5px) scale(1.05);
 }
 
 /* Adaptabilité Mobile */
@@ -853,11 +860,16 @@
     .perso-container {
         padding: 2.5rem 1.5rem;
     }
-    .floating-svg {
-        width: 80px; /* On réduit la taille sur mobile */
+    .tcg-svg { 
+        width: 55px; 
+        top: -20px; 
+        right: -15px; 
     }
-    .tcg-svg { top: -20px; right: -10px; }
-    .pc-svg { bottom: -20px; left: -10px; width: 90px; }
+    .pc-svg { 
+        width: 65px; 
+        bottom: -20px; 
+        left: -15px; 
+    }
 }
 
         /* ============================
