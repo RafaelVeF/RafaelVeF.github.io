@@ -1911,6 +1911,56 @@
             animation: pulse-green 2s ease-in-out infinite;
         }
 
+        /* Grille des leviers de formation */
+        .leviers-intro {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .leviers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .levier-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .levier-card:hover {
+            background: rgba(201, 169, 110, 0.05);
+            border-color: rgba(201, 169, 110, 0.2);
+        }
+
+        .levier-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .levier-desc {
+            font-size: 0.75rem;
+            color: rgba(240, 237, 232, 0.5);
+            line-height: 1.5;
+        }
+
+        /* Adaptabilité mobile */
+        @media (max-width: 900px) {
+            .leviers-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .leviers-grid { grid-template-columns: 1fr; }
+        }
+
     </style>
 </head>
 <body>
@@ -2376,19 +2426,58 @@
         <!-- ======= PRISE DE RECUL ======= -->
         <section id="reflexion">
             <div class="ref-wrap" style="max-width:1100px;">
+                
                 <div class="section-header reveal">
                     <span class="section-num">06</span>
                     <h2 class="section-title">Prise de <em>Recul</em></h2>
                 </div>
-                <div class="ref-with-img reveal">
+
+                <div class="reveal reveal-delay-1">
+                    <p class="leviers-intro">
+                        Le BUT Informatique structure mon parcours autour de six piliers fondamentaux, permettant de passer d'une <strong>pratique technique isolée</strong> à une <strong>expertise globale</strong> de concepteur-réalisateur de solutions complexes.
+                    </p>
+
+                    <div class="leviers-grid">
+                        <div class="levier-card">
+                            <span class="levier-name">Réaliser</span>
+                            <p class="levier-desc">Conception, développement et déploiement d'applications robustes, sécurisées et évolutives.</p>
+                        </div>
+                        <div class="levier-card">
+                            <span class="levier-name">Optimiser</span>
+                            <p class="levier-desc">Analyse et amélioration des performances algorithmiques et gestion critique des ressources.</p>
+                        </div>
+                        <div class="levier-card">
+                            <span class="levier-name">Administrer</span>
+                            <p class="levier-desc">Installation, configuration et sécurisation des infrastructures réseaux et des systèmes.</p>
+                        </div>
+                        <div class="levier-card">
+                            <span class="levier-name">Gérer</span>
+                            <p class="levier-desc">Exploitation et structuration de volumes de données massifs via des architectures optimisées.</p>
+                        </div>
+                        <div class="levier-card">
+                            <span class="levier-name">Conduire</span>
+                            <p class="levier-desc">Pilotage et suivi de projets informatiques en appliquant des méthodes agiles et collaboratives.</p>
+                        </div>
+                        <div class="levier-card">
+                            <span class="levier-name">Collaborer</span>
+                            <p class="levier-desc">Intégration efficace et communication fluide au sein d'équipes pluridisciplinaires.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ref-with-img reveal reveal-delay-2">
                     <div class="exp-aside reveal">
                         <img src="./pictures/IUT_biblio.jpg" alt="IUT Amiens">
                         <p class="ref-img-caption">IUT Amiens — UPJV · 2024–2026</p>
                     </div>
+                    
                     <div class="ref-content" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 3.5rem;">
                         <p><strong>Analyse de mes acquis :</strong> Tout au long de mon BUT2, j'ai développé une grande capacité d'adaptation. Passer d'une logique relationnelle SQL à une arborescence XML stricte durant mon stage a considérablement renforcé ma rigueur. J'ai appris à concevoir des algorithmes adéquats — notamment pour la désérialisation de données complexes — et à comprendre l'impact d'une architecture bien pensée sur la pérennité d'un projet.</p>
+                        
                         <p>Cette expérience m'a également appris à dialoguer avec des non-techniciens (chercheurs, conservateurs), à traduire des besoins métier en spécifications techniques, et à documenter rigoureusement mon travail pour assurer la transmission.</p>
+                        
                         <p><strong>Ce que le programme m'a apporté :</strong> Le BUT Informatique m'a offert une vision à 360° du développement logiciel — de l'algorithmique pure aux bases de données d'entreprise, en passant par les réseaux et la gestion de projet agile. Cette pluridisciplinarité est précisément ce qui me permet aujourd'hui d'envisager sereinement des domaines aussi exigeants que l'embarqué ou le système.</p>
+                        
                         <div class="ref-contact">
                             <div class="ref-person">
                                 <p class="name">M. David Durand</p>
