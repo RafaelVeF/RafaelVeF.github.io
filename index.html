@@ -1961,6 +1961,127 @@
             .leviers-grid { grid-template-columns: 1fr; }
         }
 
+        .about-subtitle {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        color: var(--accent);
+        margin-bottom: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+    }
+    
+    .about-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 3.5rem;
+    }
+    
+    .about-list li {
+        position: relative;
+        padding-left: 1.8rem;
+        color: rgba(240,237,232,0.7);
+        font-size: 0.85rem;
+        line-height: 1.8;
+    }
+    
+    .about-list li::before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        top: -4px;
+        color: var(--accent);
+        font-size: 1.4rem;
+    }
+    
+    .about-list li strong {
+        color: var(--white);
+        font-weight: 400;
+        letter-spacing: 0.05em;
+    }
+
+    .passions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 3.5rem;
+    }
+    
+    .passion-card {
+        background: var(--bg-glass);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: rgba(240,237,232,0.85);
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+    
+    .passion-card:hover {
+        background: rgba(201,169,110,0.05);
+        border-color: rgba(201,169,110,0.3);
+        transform: translateY(-4px);
+        color: var(--white);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .passion-icon {
+        font-size: 1.4rem;
+        filter: drop-shadow(0 0 8px rgba(201,169,110,0.4));
+    }
+
+    .values-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .value-box {
+        flex: 1;
+        min-width: 140px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-bottom: 2px solid var(--accent);
+        padding: 1.5rem 1rem;
+        text-align: center;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .value-box::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 100%;
+        background: radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .value-box:hover {
+        transform: translateY(-4px);
+        background: rgba(255,255,255,0.02);
+    }
+    
+    .value-box:hover::before {
+        opacity: 1;
+    }
+    
+    .value-title {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        font-style: italic;
+        color: var(--white);
+        position: relative;
+        z-index: 2;
+    }
+
     </style>
 </head>
 <body>
@@ -1991,7 +2112,7 @@
         <nav>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#a-propos">À Propos</a></li>
+                <li><a href="#a-propos">Qui suis-je ?</a></li>
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#experience">Parcours</a></li>
                 <li><a href="#projets">Projets</a></li>
@@ -2088,10 +2209,11 @@
 
         <section id="a-propos">
             <div class="about-wrap">
+                <!-- Sidebar inchangée (titre et stats) -->
                 <div class="about-sidebar">
                     <div class="section-header reveal">
                         <span class="section-num">01</span>
-                        <h2 class="section-title">À <em>Propos</em></h2>
+                        <h2 class="section-title">Qui suis-<em>je</em> ?</h2>
                     </div>
                     <div class="stat-grid reveal reveal-delay-1">
                         <div class="stat-item">
@@ -2112,19 +2234,64 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-text">
-                    <div class="reveal">
-                        <p><strong>Ma vision :</strong> La satisfaction client est ma priorité absolue. Je mets un point d'honneur à respecter les bonnes pratiques et à livrer un code éthique, propre et maintenable. Pour moi, le code n'est pas simplement fonctionnel — il doit être lisible, évolutif et pensé pour durer.</p>
-                    </div>
-                    <div class="reveal reveal-delay-1">
-                        <p><strong>Ma personnalité :</strong> De nature curieuse, j'aime apprendre en continu. Collaborateur honnête et adepte du franc-jeu, je m'épanouis dans les équipes où la rigueur et la confiance vont de pair. J'aborde chaque projet avec méthode, en découpant les problèmes complexes en sous-tâches maîtrisables.</p>
-                    </div>
-                    
-                    <img src="https://www.bew-web-agency.fr/wp-content/uploads/2023/03/editeur-de-site-web-1-scaled.jpg" alt="Éditeur de code" class="content-img reveal reveal-delay-2">
 
-                    <div class="highlight-block reveal reveal-delay-3">
-                        Mes axes d'amélioration ? Mon appétence pour les nouvelles technologies. En effet, je dois parfois me freiner pour ne pas intégrer des fonctionnalités non demandées, tant j'aime explorer les limites d'un système.
+                <!-- Nouvelle structuration du texte -->
+                <div class="about-text">
+                    
+                    <!-- 1. Ma Personnalité -->
+                    <div class="reveal">
+                        <h3 class="about-subtitle">Ma personnalité</h3>
+                        <ul class="about-list">
+                            <li>
+                                <strong>Apprentissage continu :</strong> De nature profondément curieuse, j'explore en permanence de nouvelles technologies pour repousser mes limites.
+                            </li>
+                            <li>
+                                <strong>Esprit d'équipe :</strong> Collaborateur honnête et adepte du franc-jeu, je m'épanouis dans les groupes où la rigueur et la confiance sont reines.
+                            </li>
+                            <li>
+                                <strong>Rigueur méthodique :</strong> J'aborde chaque projet avec stratégie, en découpant les problèmes les plus complexes en sous-tâches simples et maîtrisables.
+                            </li>
+                        </ul>
                     </div>
+
+                    <!-- 2. Mes Passions -->
+                    <div class="reveal reveal-delay-1">
+                        <h3 class="about-subtitle">Mes passions</h3>
+                        <div class="passions-grid">
+                            <div class="passion-card">
+                                <span>La Science</span>
+                            </div>
+                            <div class="passion-card">
+                                <span>Le Code</span>
+                            </div>
+                            <div class="passion-card">
+                                <span>Le Dessin</span>
+                            </div>
+                            <div class="passion-card">
+                                <span>Retourner le monde</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Mes Valeurs -->
+                    <div class="reveal reveal-delay-2">
+                        <h3 class="about-subtitle">Mes valeurs fondamentales</h3>
+                        <div class="values-container">
+                            <div class="value-box">
+                                <span class="value-title">La Loyauté</span>
+                            </div>
+                            <div class="value-box">
+                                <span class="value-title">L'Honnêteté</span>
+                            </div>
+                            <div class="value-box">
+                                <span class="value-title">L'Excellence</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image d'illustration -->
+                    <img src="https://www.bew-web-agency.fr/wp-content/uploads/2023/03/editeur-de-site-web-1-scaled.jpg" alt="Éditeur de code" class="content-img reveal reveal-delay-3">
+
                 </div>
             </div>
         </section>
